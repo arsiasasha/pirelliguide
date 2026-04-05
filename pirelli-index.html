@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>The Pirelli Guide — Unofficial</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Barlow+Condensed:wght@300;400;500;600;700;900&family=Barlow:wght@300;400;500&family=Russo+One&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --yellow: #FFCD00;
+  --red:    #E8190A;
+  --black:  #080808;
+  --dark:   #0f0f0f;
+  --mid:    #181818;
+  --dim:    #303030;
+  --white:  #F0EDE8;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Barlow', sans-serif; font-weight: 300; overflow-x: hidden; }
+.tread { background-image: repeating-linear-gradient(90deg,transparent 0,transparent 18px,rgba(255,205,0,.03) 18px,rgba(255,205,0,.03) 20px), repeating-linear-gradient(0deg,transparent 0,transparent 38px,rgba(255,255,255,.012) 38px,rgba(255,255,255,.012) 40px); }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 18px 60px; background: rgba(8,8,8,.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,205,0,.1); }
+.nav-logo { display: flex; flex-direction: column; gap: 2px; }
+.nav-logo-row { display: flex; align-items: baseline; gap: 5px; }
+.nav-p { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 34px; line-height: .85; color: var(--yellow); display: inline-block; transform: scaleX(1.3); transform-origin: left; }
+.nav-brand { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: .35em; text-transform: uppercase; color: var(--white); }
+.nav-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #888; }
+.nav-right { display: flex; align-items: center; gap: 28px; }
+.nav-link { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #ccc; text-decoration: none; transition: color .2s; }
+.nav-link:hover { color: var(--yellow); }
+.nav-cta { background: var(--yellow); color: var(--black); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: .25em; text-transform: uppercase; padding: 10px 20px; text-decoration: none; }
+
+/* HERO */
+.hero { padding: 108px 60px 52px; position: relative; overflow: hidden; }
+.tire-ring { position: absolute; top: 50%; right: -8vw; transform: translateY(-50%); width: 70vw; height: 70vw; max-width: 780px; max-height: 780px; border-radius: 50%; border: 62px solid #161616; opacity: .4; pointer-events: none; }
+.tire-ring::before { content: ''; position: absolute; inset: 30px; border-radius: 50%; border: 14px solid rgba(255,205,0,.08); }
+.hero-inner { position: relative; z-index: 2; max-width: 820px; }
+.quality-badge { display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgba(255,205,0,.2); padding: 7px 14px; margin-bottom: 24px; }
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
+.quality-badge span { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--yellow); }
+.hero-inlife { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: clamp(22px, 2.8vw, 34px); color: #bbb; margin-bottom: 6px; }
+.hero-h1 { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(48px, 7vw, 96px); line-height: .93; letter-spacing: -.01em; color: var(--white); margin-bottom: 16px; }
+.hero-h1 em { font-style: italic; color: var(--yellow); }
+.hero-tagline { font-size: clamp(18px, 2.2vw, 26px); font-weight: 300; color: #ddd; margin-bottom: 14px; }
+.hero-tagline strong { color: var(--white); font-weight: 500; }
+.hero-madethis { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(19px, 2.2vw, 27px); color: var(--yellow); margin-bottom: 36px; line-height: 1.4; }
+.hero-buttons { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 40px; }
+.btn-primary { background: var(--yellow); color: var(--black); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .25em; text-transform: uppercase; padding: 16px 34px; text-decoration: none; display: inline-flex; align-items: center; min-height: 48px; }
+.btn-ghost { color: #ccc; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; min-height: 48px; transition: color .2s; }
+.btn-ghost:hover { color: var(--yellow); }
+.btn-ghost::after { content: '→'; }
+.hero-sponsor-strip { border-top: 1px solid #1c1c1c; padding-top: 14px; display: flex; align-items: center; gap: 12px; cursor: pointer; width: fit-content; }
+.spon-p { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 18px; color: #1e1e1e; transform: scaleX(1.3); display: inline-block; transform-origin: left; transition: color .2s; }
+.spon-txt { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: #2a2a2a; transition: color .2s; }
+.hero-sponsor-strip:hover .spon-txt, .hero-sponsor-strip:hover .spon-p { color: rgba(255,205,0,.25); }
+
+/* TICKER */
+.ticker-wrap { background: var(--yellow); overflow: hidden; white-space: nowrap; padding: 11px 0; }
+.ticker-inner { display: inline-block; animation: ticker 34s linear infinite; }
+.ticker-inner span { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--black); margin: 0 36px; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* SHARED */
+.s-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--yellow); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.s-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--yellow); flex-shrink: 0; }
+h2.section-h { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(34px, 4.5vw, 60px); line-height: .97; margin-bottom: 10px; }
+.section-sub { font-size: 16px; color: #ccc; font-weight: 300; margin-bottom: 44px; line-height: 1.65; max-width: 620px; }
+
+/* BIG SECTION */
+.big-section { background: var(--dark); padding: 90px 60px; }
+.big-section h2.section-h em { color: var(--yellow); font-style: italic; }
+
+.story-block { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--dim); }
+.story-origin { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(18px, 2vw, 24px); color: #ddd; line-height: 1.6; margin-bottom: 20px; }
+.story-origin em { color: var(--yellow); font-style: normal; }
+.story-body { font-size: 16px; line-height: 2; color: #ddd; font-weight: 300; }
+.story-body p { margin-bottom: 5px; }
+.story-body .gap { margin-bottom: 20px; }
+.story-body strong { color: var(--white); font-weight: 500; }
+.story-body .after { margin-top: 20px; }
+.fy-def {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: #ddd;
+  margin-top: 18px;
+  display: block;
+  border-left: 2px solid rgba(255,205,0,.3);
+  padding-left: 14px;
+}
+
+/* problem cards */
+.problem-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--dim); }
+.p-card { background: var(--dark); padding: 36px 32px; }
+.p-card-title-row { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.p-card-icon { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 36px; line-height: 1; color: var(--red); flex-shrink: 0; }
+.p-card-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(22px, 2.8vw, 34px); color: var(--white); line-height: 1; }
+.p-card-desc { font-size: 15px; color: #ccc; font-weight: 300; line-height: 1.65; margin-bottom: 24px; }
+.p-divider { height: 1px; background: var(--dim); margin-bottom: 22px; }
+.p-card-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: #999; margin-bottom: 12px; }
+.p-stars { display: flex; gap: 4px; margin-bottom: 10px; }
+.p-star { color: #777; font-size: 15px; }
+.p-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--white); font-weight: 600; margin-bottom: 4px; }
+.p-sub { font-size: 13px; color: #bbb; font-family: 'Barlow Condensed', sans-serif; letter-spacing: .06em; }
+.p-review { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: #ccc; line-height: 1.7; padding-top: 14px; border-top: 1px solid #2a2a2a; margin-top: 14px; }
+.p-verdict { display: inline-block; border: 2px solid var(--red); color: var(--red); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: .2em; padding: 5px 14px; margin-top: 18px; transform: rotate(-4deg); }
+.math-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #222; font-size: 14px; color: #ddd; font-weight: 300; }
+.math-row:last-child { border-bottom: none; }
+.math-score { font-family: 'Barlow Condensed', sans-serif; color: #ccc; font-size: 15px; }
+.math-eq { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: #ccc; margin: 18px 0 6px; }
+.math-result { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 24px; letter-spacing: .1em; color: var(--yellow); }
+.math-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: #ccc; margin-top: 10px; padding-top: 12px; border-top: 1px solid #2a2a2a; line-height: 1.6; }
+.math-sub strong { font-style: normal; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; letter-spacing: .1em; color: var(--white); }
+
+/* PROCESS */
+.process { background: var(--mid); padding: 90px 60px; }
+.process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 48px; background: var(--dim); }
+.process-step { background: var(--mid); padding: 40px 32px; }
+.step-n { font-family: 'Cormorant Garamond', serif; font-size: 68px; font-weight: 300; color: rgba(255,205,0,.22); line-height: 1; margin-bottom: 18px; }
+.step-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 17px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 12px; color: var(--white); }
+.step-body p { font-size: 14px; line-height: 1.8; color: #ccc; font-weight: 300; margin-bottom: 8px; }
+.step-body p:last-child { margin-bottom: 0; }
+.step-body strong { color: var(--white); font-weight: 500; }
+
+/* Simple summary under process */
+.process-summary { margin-top: 2px; background: #141414; padding: 40px 48px; border-top: 1px solid var(--dim); }
+.process-summary p { font-size: 16px; color: #ccc; font-weight: 300; line-height: 1.8; margin-bottom: 10px; }
+.process-summary p:last-child { margin-bottom: 0; }
+.process-summary strong { color: var(--white); font-weight: 500; }
+
+/* GUIDE */
+.guide { background: var(--black); padding: 90px 60px; }
+.guide-header { margin-bottom: 30px; padding-bottom: 22px; border-bottom: 1px solid var(--dim); }
+.filter-bar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--dim); }
+.filter-btn { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; padding: 8px 15px; border: 1px solid var(--dim); background: transparent; color: #bbb; cursor: pointer; transition: all .18s; white-space: nowrap; min-height: 38px; }
+.filter-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+.filter-btn.active { background: var(--yellow); color: var(--black); border-color: var(--yellow); font-weight: 700; }
+.filter-divider { width: 1px; height: 24px; background: var(--dim); align-self: center; margin: 0 2px; }
+.city-group { margin-bottom: 56px; }
+.city-header { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+.city-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: #ccc; }
+.city-line { flex: 1; height: 1px; background: var(--dim); }
+.rest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: var(--dim); }
+
+/* restaurant card */
+.rest-card { background: var(--dark); padding: 26px 24px 22px; position: relative; transition: background .2s; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+.rest-card:hover { background: #161616; }
+.rest-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: var(--yellow); transform: scaleY(0); transform-origin: bottom; transition: transform .28s; }
+.rest-card:hover::before { transform: scaleY(1); }
+.rest-card.hidden { display: none; }
+.rest-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); margin-bottom: 12px; flex-shrink: 0; }
+.rest-cuisine { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: #aaa; margin-bottom: 5px; }
+.rest-name { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 22px; color: var(--white); line-height: 1; margin-bottom: 4px; }
+.rest-loc { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #aaa; margin-bottom: 10px; }
+.rest-desc { font-size: 13px; line-height: 1.7; color: #ccc; font-weight: 300; margin-bottom: 14px; flex-grow: 1; }
+.rest-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; gap: 8px; flex-wrap: wrap; }
+/* both vibe tags — same weight, different color */
+.rest-vibe { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; padding: 3px 10px; border: 1px solid; display: inline-block; }
+.rest-vibe.casual { color: #ccc; border-color: #444; }
+.rest-vibe.nice { color: var(--yellow); border-color: rgba(255,205,0,.45); }
+.rest-website { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; opacity: .7; transition: opacity .2s; }
+.rest-website:hover { opacity: 1; }
+.rest-website::after { content: '↗'; font-size: 12px; }
+.rest-multi { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: #888; font-style: italic; margin-top: 4px; width: 100%; }
+.no-results { padding: 48px 0; text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; color: #888; display: none; }
+.no-results.visible { display: block; }
+
+/* FAQ */
+.faq-section { background: var(--dark); padding: 90px 60px; }
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 44px; background: var(--dim); }
+.faq-item { background: var(--dark); padding: 28px 32px; cursor: pointer; transition: background .2s; }
+.faq-item:hover { background: #131313; }
+.faq-q { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--white); display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+.faq-icon { color: var(--yellow); font-size: 18px; flex-shrink: 0; transition: transform .25s; }
+.faq-a { font-size: 14px; line-height: 1.75; color: #ccc; font-weight: 300; max-height: 0; overflow: hidden; transition: max-height .3s ease, margin-top .3s; }
+.faq-item.open .faq-a { max-height: 240px; margin-top: 14px; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+
+/* F1 */
+.f1-section { background: #C00000; position: relative; overflow: hidden; border-top: 4px solid #fff; border-bottom: 4px solid #fff; }
+.f1-checkered { height: 9px; background-image: repeating-linear-gradient(90deg,#000 0,#000 16px,#fff 16px,#fff 32px); opacity: .2; }
+.f1-inner { padding: 32px 60px 26px; position: relative; }
+.f1-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: rgba(255,255,255,.85); margin-bottom: 10px; }
+.f1-headline { font-family: 'Russo One','Barlow Condensed',sans-serif; font-size: clamp(26px,4vw,46px); color: #fff; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; line-height: 1; margin-bottom: 4px; }
+.f1-sub { font-family: 'Barlow Condensed',sans-serif; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.75); margin-bottom: 18px; }
+.f1-compounds { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+.compound { display: flex; align-items: center; gap: 6px; font-family: 'Barlow Condensed',sans-serif; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.8); }
+.compound-circle { width: 14px; height: 14px; border-radius: 50%; border: 2px solid; }
+.compound-circle.soft { border-color: #ffaaaa; background: rgba(255,170,170,.2); }
+.compound-circle.medium { border-color: #ffe066; background: rgba(255,224,102,.15); }
+.compound-circle.hard { border-color: #fff; background: rgba(255,255,255,.1); }
+.f1-ticker-wrap { overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,.25); padding: 9px 0 0; }
+.f1-ticker { display: inline-block; animation: f1tick 22s linear infinite; }
+.f1-ticker span { font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.8); margin: 0 28px; }
+.f1-ticker .hi { color: #fff; font-weight: 900; }
+@keyframes f1tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.f1-sponsor-ask { position: absolute; top: 32px; right: 60px; border: 2px dashed rgba(255,255,255,.35); padding: 12px 18px; text-align: center; max-width: 200px; }
+.f1-sponsor-ask strong { font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 14px; letter-spacing: .1em; color: #fff; display: block; margin-bottom: 4px; }
+.f1-sponsor-ask p { font-family: 'Barlow Condensed',sans-serif; font-size: 12px; letter-spacing: .12em; color: rgba(255,255,255,.7); line-height: 1.5; }
+
+/* SMS */
+.sms-section { background: var(--black); padding: 100px 60px; text-align: center; border-top: 1px solid var(--dim); }
+.sms-big { font-family: 'Barlow Condensed',sans-serif; font-weight: 900; font-size: clamp(28px,5vw,60px); letter-spacing: .06em; text-transform: uppercase; color: var(--white); line-height: 1.05; margin-bottom: 12px; }
+.sms-big span { color: var(--yellow); }
+.sms-snark { font-family: 'Cormorant Garamond',serif; font-style: italic; font-size: clamp(16px,2vw,21px); color: #aaa; margin-bottom: 52px; }
+.sms-form { display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 440px; margin: 0 auto; }
+.sms-tap-link a { font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .22em; text-transform: uppercase; color: var(--yellow); text-decoration: none; border-bottom: 1px solid rgba(255,205,0,.4); padding-bottom: 2px; display: inline-block; min-height: 44px; line-height: 44px; }
+.sms-input-row { display: flex; border: 1px solid #444; width: 100%; transition: border-color .2s; }
+.sms-input-row:focus-within { border-color: var(--yellow); }
+.sms-input-row input { flex: 1; background: transparent; border: none; outline: none; color: var(--white); font-family: 'Barlow',sans-serif; font-size: 14px; font-weight: 300; padding: 15px 18px; min-height: 48px; }
+.sms-input-row input::placeholder { color: #666; }
+.sms-input-row button { background: var(--yellow); color: var(--black); border: none; font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; padding: 15px 22px; cursor: pointer; white-space: nowrap; min-height: 48px; }
+.sms-email-toggle { font-family: 'Barlow Condensed',sans-serif; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #888; cursor: pointer; transition: color .2s; min-height: 36px; display: flex; align-items: center; }
+.sms-email-toggle:hover { color: #ccc; }
+.sms-email-row { display: none; width: 100%; }
+.sms-email-row.visible { display: flex; }
+.sms-disclaimer { font-family: 'Cormorant Garamond',serif; font-style: italic; font-size: 13px; color: #888; }
+
+/* FOOTER */
+footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-logo { display: flex; align-items: baseline; gap: 5px; }
+.footer-p { font-family: 'Cormorant Garamond',serif; font-weight: 700; font-size: 24px; color: var(--yellow); line-height: 1; transform: scaleX(1.3); display: inline-block; transform-origin: left; }
+.footer-name { font-family: 'Barlow Condensed',sans-serif; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; color: var(--white); }
+.footer-mid { font-family: 'Cormorant Garamond',serif; font-style: italic; font-size: 13px; color: #999; text-align: center; line-height: 1.6; }
+.footer-right { font-family: 'Barlow Condensed',sans-serif; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #999; text-align: right; }
+.footer-right span { color: var(--yellow); }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav { padding: 14px 20px; }
+  .nav-right { display: none; }
+  .hero { padding: 86px 20px 48px; }
+  .tire-ring { display: none; }
+  .big-section { padding: 60px 20px; }
+  .problem-cards { grid-template-columns: 1fr; }
+  .process { padding: 60px 20px; }
+  .process-grid { grid-template-columns: 1fr; }
+  .process-summary { padding: 28px 24px; }
+  .guide { padding: 60px 20px; }
+  .faq-section { padding: 60px 20px; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .f1-inner { padding: 24px 20px; }
+  .f1-sponsor-ask { display: none; }
+  .sms-section { padding: 72px 20px; }
+  .sms-form { max-width: 100%; }
+  footer { padding: 24px 20px; flex-direction: column; text-align: center; }
+  .filter-divider { display: none; }
+  .filter-bar { gap: 5px; }
+  .filter-btn { font-size: 11px; padding: 7px 12px; }
+  .hero-buttons { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 480px) {
+  .hero-h1 { font-size: 42px; }
+  h2.section-h { font-size: 30px; }
+  .sms-big { font-size: 26px; }
+  .f1-headline { font-size: 22px; }
+  .rest-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-row">
+      <span class="nav-p">P</span>
+      <span class="nav-brand">irelli Guide</span>
+    </div>
+    <div class="nav-sub">Unofficial Edition — Not affiliated with Pirelli S.p.A.</div>
+  </div>
+  <div class="nav-right">
+    <a href="#problem" class="nav-link">The Problem</a>
+    <a href="#guide" class="nav-link">The Guide</a>
+    <a href="#faq" class="nav-link">FAQ</a>
+    <a href="#sms" class="nav-cta">Get Updates</a>
+  </div>
+</nav>
+
+<section class="hero tread">
+  <div class="tire-ring"></div>
+  <div class="hero-inner">
+    <div class="quality-badge"><div class="badge-dot"></div><span>Committed to Uncompromising Quality — Like Pirelli Tires</span></div>
+    <div class="hero-inlife">In life —</div>
+    <h1 class="hero-h1">if it's not a <em>Fuck Yes,</em><br>it should be a no.</h1>
+    <div class="hero-tagline">We think <strong>food should be a Fuck Yes.</strong></div>
+    <div class="hero-madethis">So I made a list of Fuck Yes Food.<br>Welcome to the Pirelli Guide.</div>
+    <div class="hero-buttons">
+      <a href="#guide" class="btn-primary">See the Guide</a>
+      <a href="#problem" class="btn-ghost">The full story</a>
+    </div>
+    <div class="hero-sponsor-strip">
+      <span class="spon-p">P</span>
+      <span class="spon-txt">Pirelli — Sponsor Me · pirelliguide.com · F1 tickets accepted as payment</span>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-wrap"><div class="ticker-inner">
+  <span>★ If it's on the list, it's really fucking good</span><span>·</span><span>No ratings</span><span>·</span><span>No bullshit</span><span>·</span><span>Double verified</span><span>·</span><span>Fuck Yeah or it's not here</span><span>·</span><span>We don't want to do math. We are hungry. We want to eat.</span><span>·</span>
+  <span>★ If it's on the list, it's really fucking good</span><span>·</span><span>No ratings</span><span>·</span><span>No bullshit</span><span>·</span><span>Double verified</span><span>·</span><span>Fuck Yeah or it's not here</span><span>·</span><span>We don't want to do math. We are hungry. We want to eat.</span><span>·</span>
+</div></div>
+
+<!-- PROBLEM + MANIFESTO -->
+<section class="big-section" id="problem">
+  <div class="s-label">The Problem</div>
+  <h2 class="section-h">What's Wrong With Food Guides, <em>Ratings & Restaurant Culture Today</em></h2>
+  <p class="section-sub">At some point, all the stars, ratings, mukbangs, and reviews stopped helping you figure out whether a place was actually good. Here's why.</p>
+
+  <div class="story-block">
+    <div class="story-origin">I ate at the best restaurants in the world — three-star Michelin, two-star Michelin. <em>I didn't really like them.</em></div>
+    <div class="story-body">
+      <p>The hospitality was great.</p>
+      <p>The plating was impressive.</p>
+      <p class="gap"></p>
+      <p><strong>The food didn't taste good.</strong></p>
+      <p class="after">I was tired of having to decipher ratings and videos to figure out whether a place had good food.</p>
+      <p>So I made the Pirelli Guide.</p>
+      <p>A simple list of restaurants with <strong>Fuck Yes Food.</strong></p>
+      <span class="fy-def">fuck yes food (n.) — food that is, unambiguously, a fuck yes.</span>
+    </div>
+  </div>
+
+  <div class="problem-cards">
+    <div class="p-card">
+      <div class="p-card-title-row"><span class="p-card-icon">✗</span><h3 class="p-card-title">Deliciousness is Undervalued</h3></div>
+      <p class="p-card-desc">They value the story of the food more than making it taste good.</p>
+      <div class="p-divider"></div>
+      <div class="p-card-label">Michelin ★★★ — Dramatized</div>
+      <div class="p-stars"><span class="p-star">★</span><span class="p-star">★</span><span class="p-star">★</span></div>
+      <div class="p-name">A Restaurant You Booked 4 Months Ago</div>
+      <div class="p-sub">$380 per person · 22 courses · "Smart Casual"</div>
+      <div class="p-review">"The seventh course — a lychee in fermented goat's milk foam — is an homage to the chef's grandmother. We did not enjoy eating it. We appreciated the story."</div>
+      <div class="p-verdict">HARD PASS</div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-title-row"><span class="p-card-icon">✗</span><h3 class="p-card-title">Information Overload</h3></div>
+      <p class="p-card-desc">At some point, all the lists, ratings, and reviews don't actually help.</p>
+      <div class="p-divider"></div>
+      <div class="p-card-label">Also Broken: The Rating System</div>
+      <div class="math-row"><span>The burger</span><span class="math-score">6.5 / 10</span></div>
+      <div class="math-row"><span>The ceviche</span><span class="math-score">9.0 / 10</span></div>
+      <div class="math-row"><span>450 total ratings</span><span class="math-score">4.7 ★</span></div>
+      <div class="math-eq">6.5 + 9.0 ÷ 450 × 4.7 = ???</div>
+      <div class="math-result">We Don't Want To Do Math.</div>
+      <div class="math-sub">We are hungry. We want to eat. <strong>Just tell us where to go.</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="s-label">The System</div>
+  <h2 class="section-h">How a Restaurant Makes the Pirelli Guide</h2>
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-n">01</div>
+      <div class="step-title">We Go. We Pay. We Eat.</div>
+      <div class="step-body">
+        <p>No blind tastings. No PR dinners. No comped meals.</p>
+        <p>You only see a restaurant here after we've <strong>verified it's good with our own money.</strong></p>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-n">02</div>
+      <div class="step-title">We Are Uncompromising.</div>
+      <div class="step-body">
+        <p>Only a few standout items? Not on the list. "Pretty good, not bad"? Not on the list.</p>
+        <p><strong>If it's really fucking good, it makes the list.</strong></p>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-n">03</div>
+      <div class="step-title">It's On or It's Not.</div>
+      <div class="step-body">
+        <p>Not on the list? Either hasn't been visited or didn't make the cut.</p>
+        <p>We aren't here to ruin livelihoods. <strong>Just letting you know what's excellent.</strong></p>
+      </div>
+    </div>
+  </div>
+  <div class="process-summary">
+    <p>The guide is simple. If a restaurant is on the list, it's <strong>really fucking good</strong>. If it's not on the list, we either haven't been or it didn't make the cut.</p>
+    <p>No math. No 7.2 ratings. No chef backstory. <strong>Just a list of places where you will not be disappointed.</strong></p>
+    <p>That's the whole thing.</p>
+  </div>
+</section>
+
+<!-- THE GUIDE -->
+<section class="guide" id="guide">
+  <div class="guide-header">
+    <div class="s-label">Verified. Visited. Vouched For.</div>
+    <h2 class="section-h">The Pirelli Guide</h2>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <div class="filter-divider"></div>
+    <button class="filter-btn" data-filter="vibe-casual">Casual</button>
+    <button class="filter-btn" data-filter="vibe-nice">Nicer</button>
+    <div class="filter-divider"></div>
+    <button class="filter-btn" data-filter="cuisine-burgers">Burgers</button>
+    <button class="filter-btn" data-filter="cuisine-pizza">Pizza</button>
+    <button class="filter-btn" data-filter="cuisine-italian">Italian</button>
+    <button class="filter-btn" data-filter="cuisine-korean">Korean</button>
+    <button class="filter-btn" data-filter="cuisine-dim-sum">Dim Sum</button>
+    <button class="filter-btn" data-filter="cuisine-middle-eastern">Middle Eastern</button>
+    <button class="filter-btn" data-filter="cuisine-seafood">Seafood</button>
+    <button class="filter-btn" data-filter="cuisine-bakery">Bakery</button>
+    <button class="filter-btn" data-filter="cuisine-sandwiches">Sandwiches</button>
+    <button class="filter-btn" data-filter="cuisine-new-american">New American</button>
+    <button class="filter-btn" data-filter="cuisine-burmese">Burmese</button>
+  </div>
+  <div id="no-results" class="no-results">Nothing matches that filter yet — the list is growing.</div>
+
+  <!-- SAN FRANCISCO -->
+  <div class="city-group"><div class="city-header"><span class="city-label">San Francisco</span><div class="city-line"></div></div><div class="rest-grid">
+
+    <div class="rest-card" data-cuisine="new-american" data-vibe="nice">
+      <div class="rest-dot"></div><div class="rest-cuisine">New American</div>
+      <div class="rest-name">Rich Table</div>
+      <div class="rest-loc">199 Gough St, SF</div>
+      <div class="rest-desc">Award-winning New American in Hayes Valley. Inventive cooking that actually tastes as good as it looks. One of the best restaurants in the city.</div>
+      <div class="rest-footer">
+        <span class="rest-vibe nice">Nicer</span>
+        <a href="https://www.richtablesf.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
+      </div>
+    </div>
+
+    <div class="rest-card" data-cuisine="burmese" data-vibe="casual">
+      <div class="rest-dot"></div><div class="rest-cuisine">Burmese</div>
+      <div class="rest-name">Burma Superstar</div>
+      <div class="rest-loc">309 Clement St, SF</div>
+      <div class="rest-desc">A creative, distinctive take on Burmese cuisine. One of the most interesting and well-executed cuisines in the city.</div>
+      <div class="rest-footer">
+        <span class="rest-vibe casual">Casual</span>
+        <a href="https://www.burmasuperstar.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
+      </div>
+      <div class="rest-multi">Multiple Bay Area locations</div>
+    </div>
+
+    <div class="rest-card" data-cuisine="burgers" data-vibe="casual">
+      <div class="rest-dot"></div><div class="rest-cuisine">Smash Burgers</div>
+      <div class="rest-name">Smish Smash</div>
+      <div class="rest-loc">945 Market St (Saluhall), SF</div>
+      <div class="rest-desc">Grass-fed smash burgers with creative, rotating specials. The technique is serious — started as a pop-up and earned a permanent spot.</div>
+      <div class="rest-footer">
+        <span class="rest-vibe casual">Casual</span>
+        <a href="https://www.smish-smash.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
+      </div>
+    </div>
+
+    <div class="rest-card" data-cuisine="korean" data-vibe="casual">
+      <div class="rest-dot"></div><div class="rest-cuisine">Korean</div>
+      <div class="rest-name">Daeho</div>
+      <div class="rest-loc">1620 Post St, Japantown</div>
+      <div class="rest-desc">Specialists in kalbijjim — Korean braised short ribs — and beef soup. The kind of food you think about for days after eating it.</div>
+      <div class="rest-footer">
+        <span class="rest-vibe casual">Casual</span>
+        <a href="https://www.daeho-kalbijjim.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
+      </div>
+      <div class="rest-multi">Multiple Bay Area locations</div>
+    </div>
+
+    <div class="rest-card" data-cuisine="middle-eastern" data-vibe="casual">
+      <div class="rest-dot"></div><div class="rest-cuisine">Arabic / Palestinian</div>
+      <div class="rest-name">Beit Rima</div>
+      <div class="rest-loc">138 Church St, SF</div>
+      <div class="rest-desc">Palestinian-Arabic home cooking, generously portioned and made with care. Counter service, no reservations — walk in and eat well.</div>
+      <div class="rest-footer">
+        <span class="rest-vibe casual">Casual</span>
+        <a href="https://beitrimasf.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
+      </div>
+      <div class="rest-multi">Multiple SF locations</div>
+    </div>
+
+    <div class="rest-card" data-cuisine="dim-sum" data-vibe="nice">
+      <div class="rest-dot"></div><div class="rest-cuisine">Dim Sum</div>
+      <div class="rest-name">Yank Sing</div>
+      <div class="rest-loc">49 Stevenson St, SF</div>
+      <div class="rest-desc">Family-owned since 1958. Cart service with 100+ rotating dim sum dishes. A San Francisco institution, still as good as it's ever been.</div>
+      <div class="rest-footer">
+        <span class="rest-vibe nice">Nicer</span>
+        <a href="https://yanksing.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
+      </div>
+      <div class="rest-multi">Multiple SF locations</div>
+    </div>
+
+    <div class="rest-card" data-cuisine="bakery" data-vibe="casual">
+      <div class="rest-dot"></div><div class="rest-cuisine">French Bakery</div>
+      <div class="rest-name">Arsicault Bakery</div>
+      <div class="rest-loc">397 Arguello Blvd, SF</div>
+      <div class="rest-desc">Named best new bakery in America by Bon Appétit. Widely regarded as home to the best croissant in the Bay Area — possibly the country.</div>
+      <div class="rest-footer">
+        <span class="rest-vibe casual">Casual</span>
+        <a href="https://arsicault-bakery.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
+      </div>
+      <div class="rest-multi">Multiple SF locations</div>
+    </div>
+
+    <div class="rest-card" data-cuisine="sandwiches" data-vibe="casual">
+      <div class="rest-dot"></div><div class="rest-cuisine">Deli / Sandwiches</div>
+      <div class="rest-name">Golden Gate Market Deli</div>
+      <div class="rest-loc">2767 Lombard St, SF</div>
+      <div class="rest-desc">A neighborhood deli near the Presidio with a creative sandwich menu built on excellent bread. Deceptively good for what it is.</div>
+      <div class="rest-footer">
+        <span class="rest-vibe casual">Casual</span>
+        <a href="https://www.goldengatemarketdeliliquor.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
+      </div>
+    </div>
+
+  </div></div>
+
+  <!-- EAST BAY -->
+  <div class="city-group"><div class="city-header"><span class="city-label">East Bay</span><div class="city-line"></div></div><div class="rest-grid">
+
+    <div class="rest-card" data-cuisine="middle-eastern" data-vibe="casual">
+      <div class="rest-dot"></div><div class="rest-cuisine">Middle Eastern</div>
+      <div class="rest-name">Lulu's Little Kitchen</div>
+      <div class="rest-loc">Albany, CA</div>
+      <div class="rest-desc">Middle Eastern home cooking in Albany. Small, local, and consistently good. The kind of place that doesn't need to advertise.</div>
+      <div class="rest-footer">
+        <span class="rest-vibe casual">Casual</span>
+        <a href="https://luluslittlekitchen.co" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
+      </div>
+    </div>
+
+    <div class="rest-card" data-cuisine="italian" data-vibe="nice">
+      <div class="rest-dot"></div><div class="rest-cuisine">Italian / Pasta</div>
+      <div class="rest-name">Belotti</div>
+      <div class="rest-loc">Oakland, CA</div>
+      <div class="rest-desc">Handmade pasta and traditional Italian cooking in Oakland. The kind of restaurant that feels like it's been there forever and will be there forever.</div>
+      <div class="rest-footer">
+        <span class="rest-vibe nice">Nicer</span>
+        <a href="https://www.belottiristorante.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
+      </div>
+    </div>
+
+    <div class="rest-card" data-cuisine="pizza" data-vibe="casual">
+      <div class="rest-dot"></div><div class="rest-cuisine">NY-Style Pizza</div>
+      <div class="rest-name">Mama's Boy Pizza</div>
+      <div class="rest-loc">15 Grand Ave, Oakland</div>
+      <div class="rest-desc">New York-style pizza in Oakland done properly — 20-inch pies, good sauce, correct crust. Widely regarded as among the best in the Bay Area.</div>
+      <div class="rest-footer">
+        <span class="rest-vibe casual">Casual</span>
+        <a href="https://www.mamasboypizza.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
+      </div>
+    </div>
+
+  </div></div>
+
+  <!-- PENINSULA -->
+  <div class="city-group"><div class="city-header"><span class="city-label">Peninsula</span><div class="city-line"></div></div><div class="rest-grid">
+
+    <div class="rest-card" data-cuisine="middle-eastern" data-vibe="casual">
+      <div class="rest-dot"></div><div class="rest-cuisine">Falafel / Mediterranean</div>
+      <div class="rest-name">Falafelle</div>
+      <div class="rest-loc">Redwood City, CA</div>
+      <div class="rest-desc">Fresh, well-made falafel and Mediterranean food in Redwood City. Simple and done right.</div>
+      <div class="rest-footer">
+        <span class="rest-vibe casual">Casual</span>
+        <a href="https://www.falafelle.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
+      </div>
+    </div>
+
+  </div></div>
+
+  <!-- LOS ANGELES -->
+  <div class="city-group"><div class="city-header"><span class="city-label">Los Angeles</span><div class="city-line"></div></div><div class="rest-grid">
+
+    <div class="rest-card" data-cuisine="burgers" data-vibe="casual">
+      <div class="rest-dot"></div><div class="rest-cuisine">Smash Burgers</div>
+      <div class="rest-name">Easy Street Burgers</div>
+      <div class="rest-loc">4143 Lankershim Blvd, Studio City</div>
+      <div class="rest-desc">Consistently ranked among the best smash burgers in Los Angeles. Family-owned, started as a pop-up, and still earning it every day.</div>
+      <div class="rest-footer">
+        <span class="rest-vibe casual">Casual</span>
+        <a href="https://www.easystreetburgers.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
+      </div>
+    </div>
+
+    <div class="rest-card" data-cuisine="seafood" data-vibe="nice">
+      <div class="rest-dot"></div><div class="rest-cuisine">Seafood / Wine Bar</div>
+      <div class="rest-name">Dudley Market</div>
+      <div class="rest-loc">9 Dudley Ave, Venice</div>
+      <div class="rest-desc">Venice Beach seafood spot that operates its own fishing boat. Raw bar, great natural wine list, and one of the best burgers in LA on the side.</div>
+      <div class="rest-footer">
+        <span class="rest-vibe nice">Nicer</span>
+        <a href="https://www.dudleymarketvenice.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
+      </div>
+    </div>
+
+  </div></div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="s-label">Questions</div>
+  <h2 class="section-h">Frequently Asked</h2>
+  <div class="faq-grid">
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Why don't you do ratings? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Because who gives a fuck if a dish is a 6.6? Don't you just want to know if you should definitely go? Think less, eat more.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Why is it called the Pirelli Guide? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Like Pirelli tires, we believe in uncompromising quality. Pirelli believes — why make a tire that isn't the best? We believe the same, but about food. Also, Pirelli, if you're reading this — sponsor us.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Can I suggest a restaurant? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Yeah, text me. Number below. If it makes the list, you'll get a text when it's added.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">What if my favorite spot isn't on here? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Either we haven't been to it or it's not that good — sorry. Text us if we haven't been though. We take suggestions seriously.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">How often does the list get updated? <span class="faq-icon">+</span></div>
+      <div class="faq-a">When something earns it. We don't add restaurants on a schedule. The bar is high and it stays high.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Is this actually unbiased? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Fuck no, it's biased as hell. Place your trust in me. I won't steer you wrong.</div>
+    </div>
+  </div>
+</section>
+
+<!-- F1 -->
+<div class="f1-section">
+  <div class="f1-checkered"></div>
+  <div class="f1-inner">
+    <div class="f1-note">A quick note to Pirelli —</div>
+    <div class="f1-headline">Pirelli. Sponsor Me.</div>
+    <div class="f1-sub">Italian Engineering Since 1872 · Uncompromising Quality · Maximum Performance</div>
+    <div class="f1-compounds">
+      <div class="compound"><div class="compound-circle soft"></div>Soft</div>
+      <div class="compound"><div class="compound-circle medium"></div>Medium</div>
+      <div class="compound"><div class="compound-circle hard"></div>Hard</div>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-left:10px;">All three: Fuck Yes.</span>
+    </div>
+    <div class="f1-ticker-wrap"><div class="f1-ticker">
+      <span class="hi">🏎 PLEASE PIRELLI</span><span>·</span>
+      <span>WE CAN DO BIG THINGS TOGETHER</span><span>·</span>
+      <span class="hi">WE HAVE AN OFFER YOU CANNOT REFUSE</span><span>·</span>
+      <span>POLE POSITION IN FLAVOR</span><span>·</span>
+      <span class="hi">PIRELLI — CALL US</span><span>·</span>
+      <span>SOFT COMPOUND · MAXIMUM FLAVOR</span><span>·</span>
+      <span class="hi">WE WILL TAKE F1 PADDOCK PASSES AS PAYMENT</span><span>·</span>
+      <span>ITALIAN ENGINEERING · UNCOMPROMISING QUALITY</span><span>·</span>
+      <span class="hi">🏁 OFFICIALLY UNOFFICIAL</span><span>·</span>
+      <span>PIRELLI P ZERO — THE TIRE OF CHAMPIONS</span><span>·</span>
+      <span class="hi">🏎 PLEASE PIRELLI</span><span>·</span>
+      <span>WE CAN DO BIG THINGS TOGETHER</span><span>·</span>
+      <span class="hi">WE HAVE AN OFFER YOU CANNOT REFUSE</span><span>·</span>
+      <span>POLE POSITION IN FLAVOR</span><span>·</span>
+      <span class="hi">PIRELLI — CALL US</span><span>·</span>
+      <span>SOFT COMPOUND · MAXIMUM FLAVOR</span><span>·</span>
+      <span class="hi">WE WILL TAKE F1 PADDOCK PASSES AS PAYMENT</span><span>·</span>
+      <span>ITALIAN ENGINEERING · UNCOMPROMISING QUALITY</span><span>·</span>
+      <span class="hi">🏁 OFFICIALLY UNOFFICIAL</span><span>·</span>
+      <span>PIRELLI P ZERO — THE TIRE OF CHAMPIONS</span><span>·</span>
+    </div></div>
+    <div class="f1-sponsor-ask">
+      <strong>PIRELLI S.p.A.</strong>
+      <p>This could be your ad.<br>We're easy to reach.<br>DMs open.</p>
+    </div>
+  </div>
+  <div class="f1-checkered"></div>
+</div>
+
+<!-- SMS -->
+<section class="sms-section" id="sms">
+  <div class="sms-big">Want the Best Food?<br><span>I'll Text You.</span></div>
+  <div class="sms-snark">Don't? Don't care. Enjoy your 7.2 rated pizza.</div>
+  <div class="sms-form">
+    <div class="sms-tap-link">
+      <a href="sms:+1XXXXXXXXXX?body=TEXT%20ME%20GOOD%20FOOD%20-%20Add%20me%20to%20the%20Pirelli%20Guide">📱 Tap to text us directly</a>
+    </div>
+    <div class="sms-input-row">
+      <input type="tel" placeholder="Or drop your number here" id="phone-input"/>
+      <button onclick="submitPhone()">Notify Me</button>
+    </div>
+    <div class="sms-email-toggle" onclick="toggleEmail()">+ Email instead</div>
+    <div class="sms-input-row sms-email-row" id="email-field">
+      <input type="email" placeholder="your@email.com"/>
+      <button>Subscribe</button>
+    </div>
+    <div class="sms-disclaimer">No spam. No selling your number. Just good food intel.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <span class="footer-p">P</span>
+    <span class="footer-name">irelli Guide</span>
+  </div>
+  <div class="footer-mid">Not affiliated with Pirelli S.p.A. (yet)<br>fuckyesfood.com</div>
+  <div class="footer-right">Built on the radical idea<br>that <span>food should taste good.</span></div>
+</footer>
+
+<script>
+// Filter — cards are now divs, handle clicks manually
+const filterBtns = document.querySelectorAll('.filter-btn');
+let activeFilter = 'all';
+
+// Make whole card clickable to website
+document.querySelectorAll('.rest-card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    if (e.target.closest('.rest-website')) return; // let website link handle itself
+    const link = card.querySelector('.rest-website');
+    if (link) window.open(link.href, '_blank');
+  });
+  card.style.cursor = 'pointer';
+});
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const f = btn.dataset.filter;
+    activeFilter = (f !== 'all' && f === activeFilter) ? 'all' : f;
+    filterBtns.forEach(b => b.classList.remove('active'));
+    document.querySelector(`[data-filter="${activeFilter}"]`).classList.add('active');
+    let count = 0;
+    document.querySelectorAll('.rest-card').forEach(card => {
+      const show = activeFilter === 'all'
+        || (activeFilter.startsWith('vibe-') && card.dataset.vibe === activeFilter.replace('vibe-',''))
+        || (activeFilter.startsWith('cuisine-') && card.dataset.cuisine === activeFilter.replace('cuisine-',''));
+      card.classList.toggle('hidden', !show);
+      if (show) count++;
+    });
+    document.querySelectorAll('.city-group').forEach(g => {
+      g.style.display = g.querySelectorAll('.rest-card:not(.hidden)').length === 0 ? 'none' : '';
+    });
+    document.getElementById('no-results').classList.toggle('visible', count === 0);
+  });
+});
+
+function toggleEmail() { document.getElementById('email-field').classList.toggle('visible'); }
+function submitPhone() {
+  const p = document.getElementById('phone-input').value.trim();
+  if (!p) return;
+  alert("Got it — you'll hear from us when something good gets added.");
+}
+</script>
+</body>
+</html>
