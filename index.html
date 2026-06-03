@@ -293,8 +293,8 @@ footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60p
     <div class="nav-sub">Unofficial Edition — Not affiliated with Pirelli S.p.A.</div>
   </div>
   <div class="nav-right">
-    <a href="#problem" class="nav-link">The Problem</a>
-    <a href="#guide" class="nav-link">The Guide</a>
+    <a href="#problem" class="nav-link">The Story</a>
+    <a href="guide.html" class="nav-link">The Guide</a>
     <a href="#faq" class="nav-link">FAQ</a>
     <a href="#sms" class="nav-cta">Get Updates</a>
   </div>
@@ -309,7 +309,7 @@ footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60p
     <div class="hero-tagline">We think <strong>food should be a Fuck Yes.</strong></div>
     <div class="hero-madethis">So I made a list of Fuck Yes Food.<br>Welcome to the Pirelli Guide.</div>
     <div class="hero-buttons">
-      <a href="#guide" class="btn-primary">See the Guide</a>
+      <a href="guide.html" class="btn-primary">See the Guide</a>
       <a href="#problem" class="btn-ghost">The full story</a>
     </div>
     <div class="hero-sponsor-strip">
@@ -689,24 +689,28 @@ footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60p
   <div class="f1-checkered"></div>
 </div>
 
-<!-- SMS -->
+<!-- EMAIL CAPTURE -->
 <section class="sms-section" id="sms">
-  <div class="sms-big">Want the Best Food?<br><span>I'll Text You.</span></div>
-  <div class="sms-snark">Don't? Don't care. Enjoy your 7.2 rated pizza.</div>
+  <div class="sms-big">The List is Growing.<br><span>Stay on It.</span></div>
+  <div class="sms-snark">New restaurants added when they earn it. You'll be the first to know.</div>
+
+  <!-- ============================================================
+       GHL EMBED: Replace the form below with your Go High Level
+       iframe embed code. In GHL: Sites → Funnels/Forms → your form
+       → Integrate → Copy the iframe snippet and paste it here.
+       Example:
+       <iframe src="https://link.msgsndr.com/widget/form/XXXXXXXX"
+         style="width:100%;max-width:480px;border:none;min-height:200px;"
+         id="inline-XXXXXXXX" data-layout="{'id':'XXXXXXXX'}"
+         data-trigger-type="alwaysShow" ...></iframe>
+       ============================================================ -->
+
   <div class="sms-form">
-    <div class="sms-tap-link">
-      <a href="sms:+1XXXXXXXXXX?body=TEXT%20ME%20GOOD%20FOOD%20-%20Add%20me%20to%20the%20Pirelli%20Guide">📱 Tap to text us directly</a>
-    </div>
     <div class="sms-input-row">
-      <input type="tel" placeholder="Or drop your number here" id="phone-input"/>
-      <button onclick="submitPhone()">Notify Me</button>
+      <input type="email" placeholder="your@email.com" id="email-input"/>
+      <button onclick="submitEmail()">Notify Me</button>
     </div>
-    <div class="sms-email-toggle" onclick="toggleEmail()">+ Email instead</div>
-    <div class="sms-input-row sms-email-row" id="email-field">
-      <input type="email" placeholder="your@email.com"/>
-      <button>Subscribe</button>
-    </div>
-    <div class="sms-disclaimer">No spam. No selling your number. Just good food intel.</div>
+    <div class="sms-disclaimer">No spam. No selling your data. Just good food intel when something earns a spot.</div>
   </div>
 </section>
 
@@ -755,10 +759,10 @@ filterBtns.forEach(btn => {
   });
 });
 
-function toggleEmail() { document.getElementById('email-field').classList.toggle('visible'); }
-function submitPhone() {
-  const p = document.getElementById('phone-input').value.trim();
-  if (!p) return;
+function submitEmail() {
+  const e = document.getElementById('email-input').value.trim();
+  if (!e || !e.includes('@')) return;
+  // TODO: wire to GHL — replace this alert once embed is in place
   alert("Got it — you'll hear from us when something good gets added.");
 }
 </script>
