@@ -708,8 +708,9 @@ footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60p
   <div class="sms-form">
     <div class="sms-input-row">
       <input type="email" placeholder="your@email.com" id="email-input"/>
-      <button onclick="submitEmail()">Notify Me</button>
+      <button id="submit-btn" onclick="submitEmail()">Notify Me</button>
     </div>
+    <div id="form-msg" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--yellow);min-height:20px;"></div>
     <div class="sms-disclaimer">No spam. No selling your data. Just good food intel when something earns a spot.</div>
   </div>
 </section>
@@ -759,11 +760,37 @@ filterBtns.forEach(btn => {
   });
 });
 
-function submitEmail() {
-  const e = document.getElementById('email-input').value.trim();
-  if (!e || !e.includes('@')) return;
-  // TODO: wire to GHL — replace this alert once embed is in place
-  alert("Got it — you'll hear from us when something good gets added.");
+async function submitEmail() {
+  const email = document.getElementById('email-input').value.trim();
+  const btn = document.getElementById('submit-btn');
+  const msg = document.getElementById('form-msg');
+  if (!email || !email.includes('@')) {
+    msg.style.color = 'var(--red)';
+    msg.textContent = 'Enter a valid email.';
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = '...';
+  msg.textContent = '';
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    if (res.ok) {
+      msg.style.color = 'var(--yellow)';
+      msg.textContent = "You're on the list. You'll hear from us when something earns a spot.";
+      document.getElementById('email-input').value = '';
+    } else {
+      throw new Error();
+    }
+  } catch {
+    msg.style.color = 'var(--red)';
+    msg.textContent = 'Something went wrong. Try again.';
+  }
+  btn.disabled = false;
+  btn.textContent = 'Notify Me';
 }
 </script>
 </body>
