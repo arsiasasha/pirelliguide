@@ -784,10 +784,7 @@ async function submitEmail() {
       body: JSON.stringify({ email, phone })
     });
     if (res.ok) {
-      msg.style.color = 'var(--yellow)';
-      msg.textContent = "You're on the list. You'll hear from us when something earns a spot.";
-      document.getElementById('email-input').value = '';
-      document.getElementById('phone-input').value = '';
+      window.location.href = '/confirmed.html';
     } else {
       throw new Error();
     }
