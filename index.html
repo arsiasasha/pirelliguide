@@ -707,11 +707,15 @@ footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60p
 
   <div class="sms-form">
     <div class="sms-input-row">
-      <input type="email" placeholder="your@email.com" id="email-input"/>
-      <button id="submit-btn" onclick="submitEmail()">Notify Me</button>
+      <input type="email" placeholder="Email address (required)" id="email-input"/>
     </div>
-    <div id="form-msg" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--yellow);min-height:20px;"></div>
-    <div class="sms-disclaimer">No spam. No selling your data. Just good food intel when something earns a spot.</div>
+    <div class="sms-input-row" style="margin-top:8px;">
+      <input type="tel" placeholder="Phone number (optional)" id="phone-input"/>
+    </div>
+    <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:#888;text-align:left;width:100%;margin-top:4px;">We only text when a new restaurant is added. You'll probably want to know.</div>
+    <button id="submit-btn" onclick="submitEmail()" style="background:var(--yellow);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.25em;text-transform:uppercase;padding:16px;border:none;cursor:pointer;width:100%;margin-top:8px;min-height:48px;">Notify Me</button>
+    <div id="form-msg" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--yellow);min-height:20px;width:100%;text-align:center;"></div>
+    <div class="sms-disclaimer">No spam. No selling your data. Just good food intel.</div>
   </div>
 </section>
 
@@ -762,11 +766,12 @@ filterBtns.forEach(btn => {
 
 async function submitEmail() {
   const email = document.getElementById('email-input').value.trim();
+  const phone = document.getElementById('phone-input').value.trim();
   const btn = document.getElementById('submit-btn');
   const msg = document.getElementById('form-msg');
   if (!email || !email.includes('@')) {
     msg.style.color = 'var(--red)';
-    msg.textContent = 'Enter a valid email.';
+    msg.textContent = 'Enter a valid email address.';
     return;
   }
   btn.disabled = true;
@@ -776,12 +781,13 @@ async function submitEmail() {
     const res = await fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
+      body: JSON.stringify({ email, phone })
     });
     if (res.ok) {
       msg.style.color = 'var(--yellow)';
       msg.textContent = "You're on the list. You'll hear from us when something earns a spot.";
       document.getElementById('email-input').value = '';
+      document.getElementById('phone-input').value = '';
     } else {
       throw new Error();
     }

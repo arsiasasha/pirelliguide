@@ -3,7 +3,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { email, name } = req.body;
+  const { email, phone } = req.body;
 
   if (!email || !email.includes('@')) {
     return res.status(400).json({ error: 'Valid email required' });
@@ -19,7 +19,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         email,
-        name: name || '',
+        phone: phone || '',
         locationId: process.env.GHL_LOCATION_ID,
         tags: ['pirelli-guide']
       })
