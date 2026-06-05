@@ -145,23 +145,29 @@ footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60p
       </select>
     </div>
     <div>
+      <div class="filter-label" style="margin-bottom:4px;">Vibe</div>
+      <select class="filter-select" id="vibe-filter" onchange="applyFilters()">
+        <option value="all">Any Vibe</option>
+        <option value="casual">Casual</option>
+        <option value="nice">Nicer</option>
+      </select>
+    </div>
+    <div>
       <div class="filter-label" style="margin-bottom:4px;">Cuisine</div>
       <select class="filter-select" id="cuisine-filter" onchange="applyFilters()">
         <option value="all">All Cuisines</option>
-        <option value="vibe-casual">Casual</option>
-        <option value="vibe-nice">Nicer</option>
-        <option value="cuisine-burgers">Burgers</option>
-        <option value="cuisine-pizza">Pizza</option>
-        <option value="cuisine-italian">Italian</option>
-        <option value="cuisine-korean">Korean</option>
-        <option value="cuisine-dim-sum">Dim Sum</option>
-        <option value="cuisine-middle-eastern">Middle Eastern</option>
-        <option value="cuisine-seafood">Seafood</option>
-        <option value="cuisine-bakery">Bakery</option>
-        <option value="cuisine-sandwiches">Sandwiches</option>
-        <option value="cuisine-new-american">New American</option>
-        <option value="cuisine-burmese">Burmese</option>
-        <option value="cuisine-hawaiian">Hawaiian</option>
+        <option value="burgers">Burgers</option>
+        <option value="pizza">Pizza</option>
+        <option value="italian">Italian</option>
+        <option value="korean">Korean</option>
+        <option value="dim-sum">Dim Sum</option>
+        <option value="middle-eastern">Middle Eastern</option>
+        <option value="seafood">Seafood</option>
+        <option value="bakery">Bakery</option>
+        <option value="sandwiches">Sandwiches</option>
+        <option value="new-american">New American</option>
+        <option value="burmese">Burmese</option>
+        <option value="hawaiian">Hawaiian</option>
       </select>
     </div>
     <button class="filter-reset" onclick="resetFilters()">↺ Reset</button>
@@ -380,6 +386,7 @@ document.querySelectorAll('.rest-card').forEach(card => {
 
 function applyFilters() {
   const cityVal = document.getElementById('city-filter').value;
+  const vibeVal = document.getElementById('vibe-filter').value;
   const cuisineVal = document.getElementById('cuisine-filter').value;
   let count = 0;
 
@@ -388,11 +395,11 @@ function applyFilters() {
     if (!cityMatch) { group.style.display = 'none'; return; }
 
     group.querySelectorAll('.rest-card').forEach(card => {
-      const cuisineMatch = cuisineVal === 'all'
-        || (cuisineVal.startsWith('vibe-') && card.dataset.vibe === cuisineVal.replace('vibe-',''))
-        || (cuisineVal.startsWith('cuisine-') && card.dataset.cuisine === cuisineVal.replace('cuisine-',''));
-      card.classList.toggle('hidden', !cuisineMatch);
-      if (cuisineMatch) count++;
+      const vibeMatch = vibeVal === 'all' || card.dataset.vibe === vibeVal;
+      const cuisineMatch = cuisineVal === 'all' || card.dataset.cuisine === cuisineVal;
+      const show = vibeMatch && cuisineMatch;
+      card.classList.toggle('hidden', !show);
+      if (show) count++;
     });
 
     group.style.display = group.querySelectorAll('.rest-card:not(.hidden)').length === 0 ? 'none' : '';
@@ -403,6 +410,7 @@ function applyFilters() {
 
 function resetFilters() {
   document.getElementById('city-filter').value = 'all';
+  document.getElementById('vibe-filter').value = 'all';
   document.getElementById('cuisine-filter').value = 'all';
   applyFilters();
 }
