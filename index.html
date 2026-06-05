@@ -29,159 +29,167 @@ html { scroll-behavior: smooth; }
 body { background: var(--black); color: var(--white); font-family: 'Barlow', sans-serif; font-weight: 300; overflow-x: hidden; }
 
 /* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 60px; background: rgba(8,8,8,0); backdrop-filter: blur(0px); border-bottom: 1px solid rgba(255,205,0,0); transition: all .4s; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 18px 60px; background: rgba(8,8,8,0); transition: all .4s; }
 nav.scrolled { background: rgba(8,8,8,.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,205,0,.1); }
 .nav-logo { display: flex; flex-direction: column; gap: 2px; text-decoration: none; }
 .nav-logo-row { display: flex; align-items: baseline; gap: 5px; }
-.nav-p { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 32px; line-height: .85; color: var(--yellow); display: inline-block; transform: scaleX(1.3); transform-origin: left; }
-.nav-brand { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 15px; letter-spacing: .35em; text-transform: uppercase; color: var(--white); }
-.nav-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #666; }
-.nav-right { display: flex; align-items: center; gap: 32px; }
+.nav-p { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 30px; line-height: .85; color: var(--yellow); display: inline-block; transform: scaleX(1.3); transform-origin: left; }
+.nav-brand { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .35em; text-transform: uppercase; color: var(--white); }
+.nav-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: #555; }
+.nav-right { display: flex; align-items: center; gap: 28px; }
 .nav-link { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #bbb; text-decoration: none; transition: color .2s; }
 .nav-link:hover { color: var(--yellow); }
-.nav-cta { background: var(--yellow); color: var(--black); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: .25em; text-transform: uppercase; padding: 10px 22px; text-decoration: none; transition: opacity .2s; }
+.nav-cta { background: var(--yellow); color: var(--black); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: .25em; text-transform: uppercase; padding: 10px 20px; text-decoration: none; transition: opacity .2s; }
 .nav-cta:hover { opacity: .85; }
 
 /* HERO */
 .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
 
+/* hero background */
+.hero-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-bg-photos { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; }
+.hero-bg-photos img { width: 100%; height: 100%; object-fit: cover; opacity: .22; filter: grayscale(20%); }
+.hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(105deg, rgba(8,8,8,1) 0%, rgba(8,8,8,.92) 35%, rgba(8,8,8,.55) 65%, rgba(8,8,8,.7) 100%); }
+
 /* hero left */
-.hero-left { display: flex; flex-direction: column; justify-content: center; padding: 140px 60px 80px; position: relative; z-index: 2; }
-.hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: var(--yellow); margin-bottom: 28px; display: flex; align-items: center; gap: 12px; }
-.hero-eyebrow::before { content: ''; display: block; width: 30px; height: 1px; background: var(--yellow); }
-.hero-h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(42px, 5.5vw, 80px); line-height: .92; letter-spacing: .02em; text-transform: uppercase; color: var(--white); margin-bottom: 24px; }
+.hero-left { display: flex; flex-direction: column; justify-content: center; padding: 120px 56px 72px; position: relative; z-index: 2; }
+.hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: var(--yellow); margin-bottom: 22px; display: flex; align-items: center; gap: 12px; }
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--yellow); flex-shrink: 0; }
+.hero-h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(38px, 4.8vw, 72px); line-height: .92; letter-spacing: .02em; text-transform: uppercase; color: var(--white); margin-bottom: 18px; }
 .hero-h1 .accent { color: var(--yellow); display: block; }
-.hero-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(18px, 2vw, 24px); color: #aaa; margin-bottom: 52px; line-height: 1.5; }
-.hero-buttons { display: flex; flex-direction: column; gap: 12px; max-width: 340px; }
-.btn-primary { background: var(--yellow); color: var(--black); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; padding: 18px 32px; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: opacity .2s; min-height: 52px; }
+.hero-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(17px, 1.8vw, 22px); color: #999; margin-bottom: 40px; line-height: 1.5; }
+.hero-buttons { display: flex; flex-direction: column; gap: 10px; max-width: 320px; }
+.btn-primary { background: var(--yellow); color: var(--black); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; padding: 16px 28px; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: opacity .2s; min-height: 50px; }
 .btn-primary:hover { opacity: .88; }
-.btn-outline { border: 1px solid rgba(255,205,0,.35); color: var(--yellow); font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; padding: 18px 32px; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: all .2s; min-height: 52px; }
+.btn-outline { border: 1px solid rgba(255,205,0,.3); color: var(--yellow); font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; padding: 16px 28px; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: all .2s; min-height: 50px; }
 .btn-outline:hover { border-color: var(--yellow); background: rgba(255,205,0,.06); }
 
 /* hero right */
-.hero-right { position: relative; display: flex; flex-direction: column; justify-content: center; padding: 140px 60px 80px 40px; z-index: 2; }
-
-/* background image collage */
-.hero-bg-images { position: absolute; inset: 0; z-index: 0; }
-.hero-bg-images::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--black) 0%, rgba(8,8,8,.75) 40%, rgba(8,8,8,.5) 100%); z-index: 1; }
-.bg-img { position: absolute; object-fit: cover; opacity: .18; filter: grayscale(30%); }
-.bg-img-1 { top: 0; left: 0; width: 60%; height: 55%; object-fit: cover; }
-.bg-img-2 { bottom: 0; right: 0; width: 65%; height: 55%; object-fit: cover; }
-.bg-img-3 { top: 40%; left: 20%; width: 50%; height: 45%; object-fit: cover; }
-
-.hero-right-inner { position: relative; z-index: 2; }
-.hero-tagline { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(26px, 3vw, 42px); line-height: 1.1; color: var(--white); margin-bottom: 32px; }
+.hero-right { display: flex; flex-direction: column; justify-content: center; padding: 120px 60px 72px 32px; position: relative; z-index: 2; }
+.hero-tagline { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(22px, 2.6vw, 38px); line-height: 1.1; color: var(--white); margin-bottom: 36px; }
 .hero-tagline em { color: var(--yellow); font-style: italic; }
-.hero-divider { width: 40px; height: 1px; background: rgba(255,205,0,.3); margin-bottom: 28px; }
-.hero-submit-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: #888; margin-bottom: 10px; }
-.hero-submit-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(16px, 1.8vw, 21px); color: #ccc; margin-bottom: 20px; line-height: 1.5; }
-.btn-ghost-sm { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--yellow); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: gap .2s; }
-.btn-ghost-sm:hover { gap: 14px; }
-.btn-ghost-sm::after { content: '→'; }
+.hero-access-btn { background: transparent; border: 1px solid rgba(255,255,255,.15); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; padding: 16px 28px; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: all .2s; min-height: 50px; margin-bottom: 14px; }
+.hero-access-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+.spots-row { display: flex; align-items: center; gap: 10px; margin-bottom: 36px; }
+.pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); flex-shrink: 0; animation: pulse 1.8s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(232,25,10,.6); } 50% { box-shadow: 0 0 0 6px rgba(232,25,10,0); } }
+.spots-text { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: #999; }
+.spots-text strong { color: var(--white); font-weight: 600; }
+.hero-social-row { display: flex; align-items: center; gap: 16px; }
+.hero-social-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #666; }
+.hero-social-icon { color: #888; text-decoration: none; transition: color .2s; display: flex; align-items: center; }
+.hero-social-icon:hover { color: var(--yellow); }
+.hero-social-icon svg { width: 18px; height: 18px; fill: currentColor; }
 
 /* PIRELLI BAR */
 .pirelli-bar { background: var(--red); position: relative; overflow: hidden; border-top: 3px solid #fff; border-bottom: 3px solid #fff; }
 .pirelli-bar-check { height: 7px; background-image: repeating-linear-gradient(90deg,#000 0,#000 14px,#fff 14px,#fff 28px); opacity: .25; }
-.pirelli-bar-inner { padding: 24px 60px; display: flex; align-items: center; gap: 60px; }
-.pirelli-bar-left { flex-shrink: 0; }
-.pirelli-bar-headline { font-family: 'Russo One', sans-serif; font-size: clamp(20px, 3vw, 36px); color: #fff; text-transform: uppercase; letter-spacing: .04em; line-height: 1; }
-.pirelli-bar-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-top: 4px; }
-.pirelli-bar-ticker-wrap { flex: 1; overflow: hidden; white-space: nowrap; border-left: 1px solid rgba(255,255,255,.2); padding-left: 40px; }
-.pirelli-bar-ticker { display: inline-block; animation: f1tick 22s linear infinite; }
-.pirelli-bar-ticker span { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.8); margin: 0 28px; }
+.pirelli-bar-inner { padding: 20px 60px; display: flex; align-items: center; gap: 48px; }
+.pirelli-bar-headline { font-family: 'Russo One', sans-serif; font-size: clamp(18px, 2.5vw, 30px); color: #fff; text-transform: uppercase; letter-spacing: .04em; line-height: 1; flex-shrink: 0; }
+.pirelli-bar-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-top: 3px; }
+.pirelli-bar-ticker-wrap { flex: 1; overflow: hidden; white-space: nowrap; border-left: 1px solid rgba(255,255,255,.2); padding-left: 36px; }
+.pirelli-bar-ticker { display: inline-block; animation: f1tick 24s linear infinite; }
+.pirelli-bar-ticker span { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.8); margin: 0 24px; }
 .pirelli-bar-ticker .hi { color: #fff; font-weight: 900; }
 @keyframes f1tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
+/* SHARED SECTION STYLES */
+.s-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--yellow); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+.s-label::before { content: ''; display: block; width: 22px; height: 1px; background: var(--yellow); flex-shrink: 0; }
+.section-h { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(30px, 4vw, 52px); line-height: .95; color: var(--white); }
+
 /* MANIFESTO */
-.manifesto { background: var(--black); padding: 110px 60px; max-width: 900px; margin: 0 auto; text-align: center; }
-.manifesto-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: var(--yellow); margin-bottom: 32px; display: flex; align-items: center; justify-content: center; gap: 14px; }
-.manifesto-label::before, .manifesto-label::after { content: ''; display: block; width: 30px; height: 1px; background: var(--yellow); }
-.manifesto-p { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2.5vw, 30px); font-weight: 300; line-height: 1.65; color: #ccc; margin-bottom: 20px; }
+.manifesto { background: var(--black); padding: 96px 60px; }
+.manifesto-inner { max-width: 820px; margin: 0 auto; text-align: center; }
+.manifesto-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: var(--yellow); margin-bottom: 36px; display: flex; align-items: center; justify-content: center; gap: 14px; }
+.manifesto-eyebrow span { display: block; width: 28px; height: 1px; background: var(--yellow); }
+.manifesto-p { font-family: 'Cormorant Garamond', serif; font-size: clamp(19px, 2.2vw, 27px); font-weight: 300; line-height: 1.7; color: #bbb; margin-bottom: 20px; }
 .manifesto-p strong { color: var(--white); font-weight: 600; }
-.manifesto-p:last-child { margin-bottom: 0; color: var(--white); font-style: italic; }
+.manifesto-p.final { color: var(--white); font-style: italic; margin-bottom: 0; }
 
 /* GUIDE PREVIEW */
-.guide-preview { background: var(--dark); padding: 90px 60px; }
-.section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--dim); }
-.section-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--yellow); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-.section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--yellow); flex-shrink: 0; }
-.section-h { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(32px, 4vw, 52px); line-height: .95; color: var(--white); }
+.guide-preview { background: var(--dark); padding: 80px 60px; }
+.section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 36px; padding-bottom: 18px; border-bottom: 1px solid var(--dim); flex-wrap: wrap; gap: 16px; }
+.section-header-left { display: flex; flex-direction: column; gap: 4px; }
+.section-meta { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #666; margin-top: 8px; }
+.section-meta span { color: var(--yellow); }
 .section-link { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--yellow); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: gap .2s; white-space: nowrap; }
 .section-link:hover { gap: 14px; }
 .section-link::after { content: '→'; }
 .rest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: var(--dim); }
-.rest-card { background: var(--dark); padding: 26px 24px 22px; position: relative; transition: background .2s; text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer; }
+.rest-card { background: var(--dark); padding: 24px 22px 20px; position: relative; transition: background .2s; text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer; }
 .rest-card:hover { background: #161616; }
 .rest-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: var(--yellow); transform: scaleY(0); transform-origin: bottom; transition: transform .28s; }
 .rest-card:hover::before { transform: scaleY(1); }
-.rest-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); margin-bottom: 12px; }
-.rest-cuisine { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: #aaa; margin-bottom: 5px; }
-.rest-name { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 22px; color: var(--white); line-height: 1; margin-bottom: 4px; }
-.rest-loc { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #aaa; margin-bottom: 10px; }
-.rest-desc { font-size: 13px; line-height: 1.7; color: #ccc; font-weight: 300; margin-bottom: 14px; flex-grow: 1; }
+.rest-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); margin-bottom: 10px; }
+.rest-cuisine { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #888; margin-bottom: 4px; }
+.rest-name { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 21px; color: var(--white); line-height: 1; margin-bottom: 3px; }
+.rest-loc { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #777; margin-bottom: 10px; }
+.rest-desc { font-size: 13px; line-height: 1.7; color: #bbb; font-weight: 300; margin-bottom: 14px; flex-grow: 1; }
 .rest-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; gap: 8px; flex-wrap: wrap; }
-.rest-vibe { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; padding: 3px 10px; border: 1px solid; display: inline-block; }
-.rest-vibe.casual { color: #ccc; border-color: #444; }
-.rest-vibe.nice { color: var(--yellow); border-color: rgba(255,205,0,.45); }
-.rest-website { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; opacity: .7; transition: opacity .2s; }
+.rest-vibe { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; padding: 3px 9px; border: 1px solid; display: inline-block; }
+.rest-vibe.casual { color: #bbb; border-color: #3a3a3a; }
+.rest-vibe.nice { color: var(--yellow); border-color: rgba(255,205,0,.4); }
+.rest-website { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--yellow); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; opacity: .65; transition: opacity .2s; }
 .rest-website:hover { opacity: 1; }
-.rest-website::after { content: '↗'; font-size: 12px; }
-.rest-multi { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: #888; font-style: italic; margin-top: 4px; width: 100%; }
-.guide-preview-cta { text-align: center; margin-top: 48px; }
+.rest-website::after { content: '↗'; font-size: 11px; }
+.guide-preview-cta { text-align: center; margin-top: 44px; }
 
-/* INSIDER */
-.insider { background: var(--black); padding: 110px 60px; border-top: 1px solid var(--dim); }
-.insider-inner { max-width: 680px; margin: 0 auto; text-align: center; }
-.insider-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: var(--yellow); margin-bottom: 20px; }
-.insider-h { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(36px, 5vw, 64px); line-height: .95; color: var(--white); margin-bottom: 16px; }
-.insider-h em { color: var(--yellow); font-style: italic; }
-.insider-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(16px, 2vw, 20px); color: #aaa; margin-bottom: 12px; line-height: 1.6; }
-.insider-note { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #555; margin-bottom: 44px; }
-.insider-note span { color: var(--yellow); }
-.insider-form { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; max-width: 480px; margin: 0 auto; }
-.insider-input-row { display: flex; border: 1px solid #333; width: 100%; transition: border-color .2s; }
-.insider-input-row:focus-within { border-color: var(--yellow); }
-.insider-input-row input { flex: 1; background: transparent; border: none; outline: none; color: var(--white); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 300; padding: 16px 20px; min-height: 52px; }
-.insider-input-row input::placeholder { color: #555; }
-.insider-phone-row { display: flex; border: 1px solid #333; width: 100%; transition: border-color .2s; }
-.insider-phone-row:focus-within { border-color: rgba(255,205,0,.4); }
-.insider-phone-row input { flex: 1; background: transparent; border: none; outline: none; color: var(--white); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 300; padding: 16px 20px; min-height: 52px; }
-.insider-phone-row input::placeholder { color: #555; }
-.insider-phone-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 12px; color: #666; width: 100%; text-align: left; }
-.insider-btn { background: var(--yellow); color: var(--black); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; padding: 18px; border: none; cursor: pointer; width: 100%; min-height: 52px; transition: opacity .2s; }
-.insider-btn:hover { opacity: .88; }
-.insider-btn:disabled { opacity: .5; cursor: not-allowed; }
-#insider-msg { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; min-height: 24px; color: var(--yellow); }
-.insider-disclaimer { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: #444; margin-top: 8px; }
+/* ACCESS SECTION */
+.access { background: var(--black); padding: 100px 60px; border-top: 1px solid var(--dim); }
+.access-inner { max-width: 620px; margin: 0 auto; text-align: center; }
+.access-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: var(--yellow); margin-bottom: 18px; }
+.access-h { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(38px, 5vw, 62px); line-height: .95; color: var(--white); margin-bottom: 14px; }
+.access-h em { color: var(--yellow); font-style: italic; }
+.access-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(17px, 2vw, 22px); color: #999; margin-bottom: 36px; line-height: 1.6; }
+.access-disclaimer { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: #666; margin-bottom: 36px; line-height: 1.6; }
+.access-disclaimer strong { color: #aaa; font-style: normal; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; letter-spacing: .1em; }
+.access-form { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+.form-field-wrap { display: flex; flex-direction: column; gap: 6px; }
+.form-field-label { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: #777; text-align: left; }
+.form-input-row { display: flex; border: 1px solid #2a2a2a; width: 100%; transition: border-color .2s; }
+.form-input-row:focus-within { border-color: var(--yellow); }
+.form-input-row input { flex: 1; background: transparent; border: none; outline: none; color: var(--white); font-family: 'Barlow', sans-serif; font-size: 15px; font-weight: 300; padding: 16px 20px; min-height: 52px; }
+.form-input-row input::placeholder { color: #444; }
+.phone-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: #555; text-align: left; line-height: 1.5; }
+.access-btn { background: var(--yellow); color: var(--black); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; padding: 18px; border: none; cursor: pointer; width: 100%; min-height: 54px; transition: opacity .2s; margin-top: 6px; }
+.access-btn:hover { opacity: .88; }
+.access-btn:disabled { opacity: .5; cursor: not-allowed; }
+#access-msg { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; min-height: 24px; color: var(--yellow); }
+.access-fine { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: #3a3a3a; }
 
 /* FOOTER */
-footer { background: var(--black); border-top: 1px solid #1a1a1a; padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+footer { background: var(--black); border-top: 1px solid #181818; padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
 .footer-logo { display: flex; align-items: baseline; gap: 5px; }
-.footer-p { font-family: 'Cormorant Garamond',serif; font-weight: 700; font-size: 24px; color: var(--yellow); line-height: 1; transform: scaleX(1.3); display: inline-block; transform-origin: left; }
-.footer-name { font-family: 'Barlow Condensed',sans-serif; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; color: var(--white); }
-.footer-mid { font-family: 'Cormorant Garamond',serif; font-style: italic; font-size: 13px; color: #555; text-align: center; line-height: 1.6; }
-.footer-right { font-family: 'Barlow Condensed',sans-serif; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #555; text-align: right; }
-.footer-right span { color: var(--yellow); }
+.footer-p { font-family: 'Cormorant Garamond',serif; font-weight: 700; font-size: 22px; color: var(--yellow); line-height: 1; transform: scaleX(1.3); display: inline-block; transform-origin: left; }
+.footer-name { font-family: 'Barlow Condensed',sans-serif; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--white); }
+.footer-mid { font-family: 'Cormorant Garamond',serif; font-style: italic; font-size: 13px; color: #444; text-align: center; line-height: 1.6; }
+.footer-right { display: flex; align-items: center; gap: 16px; }
+.footer-social { color: #555; text-decoration: none; transition: color .2s; display: flex; }
+.footer-social:hover { color: var(--yellow); }
+.footer-social svg { width: 17px; height: 17px; fill: currentColor; }
 
 /* MOBILE */
 @media (max-width: 900px) {
-  nav { padding: 16px 24px; }
+  nav { padding: 14px 20px; }
   .nav-right { display: none; }
-  .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-left { padding: 110px 24px 48px; }
-  .hero-right { padding: 0 24px 72px; }
-  .hero-bg-images { display: none; }
-  .pirelli-bar-inner { padding: 20px 24px; flex-direction: column; align-items: flex-start; gap: 20px; }
-  .pirelli-bar-ticker-wrap { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,.2); padding-top: 16px; width: 100%; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 100px 24px 40px; }
+  .hero-right { padding: 0 24px 64px; }
+  .pirelli-bar-inner { padding: 18px 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .pirelli-bar-ticker-wrap { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,.15); padding-top: 14px; width: 100%; }
   .manifesto { padding: 72px 24px; }
   .guide-preview { padding: 60px 24px; }
-  .insider { padding: 72px 24px; }
+  .access { padding: 72px 24px; }
   footer { padding: 24px; flex-direction: column; text-align: center; }
-  .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .section-header { flex-direction: column; align-items: flex-start; }
+  .hero-buttons { max-width: 100%; }
 }
 @media (max-width: 480px) {
-  .hero-h1 { font-size: 38px; }
+  .hero-h1 { font-size: 36px; }
   .rest-grid { grid-template-columns: 1fr; }
+  .hero-tagline { font-size: 22px; }
+  .access-h { font-size: 36px; }
 }
 </style>
 </head>
@@ -197,73 +205,80 @@ footer { background: var(--black); border-top: 1px solid #1a1a1a; padding: 32px 
   </a>
   <div class="nav-right">
     <a href="/guide.html" class="nav-link">The Guide</a>
-    <a href="/submit.html" class="nav-link">Submit a Restaurant</a>
-    <a href="#insider" class="nav-cta">Request Access</a>
+    <a href="/submit.html" class="nav-link">Nominate a Restaurant</a>
+    <a href="#access" class="nav-cta">Get First Access</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-
-  <!-- Background images (right side bleeds into left via opacity) -->
-  <div class="hero-bg-images">
-    <img class="bg-img bg-img-1" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80" alt="">
-    <img class="bg-img bg-img-2" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&q=80" alt="">
-    <img class="bg-img bg-img-3" src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=900&q=80" alt="">
+  <div class="hero-bg">
+    <div class="hero-bg-photos">
+      <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=600&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="">
+    </div>
   </div>
 
   <div class="hero-left">
     <div class="hero-eyebrow">The Real List</div>
     <h1 class="hero-h1">
-      We Are At War<br>
-      With The<br>
+      We Are At War<br>With The<br>
       <span class="accent">Michelin Guide.</span>
     </h1>
     <p class="hero-sub">They rate stories. We rate food.</p>
     <div class="hero-buttons">
-      <a href="/guide.html" class="btn-primary">See the Guide</a>
-      <a href="#insider" class="btn-outline">Become a Pirelli Insider</a>
+      <a href="/guide.html" class="btn-primary">Explore the Guide</a>
+      <a href="/submit.html" class="btn-outline">Nominate a Restaurant</a>
     </div>
   </div>
 
   <div class="hero-right">
-    <div class="hero-right-inner">
-      <h2 class="hero-tagline">The Pirelli Guide is the real list of the <em>best tasting food</em> in the world.</h2>
-      <div class="hero-divider"></div>
-      <div class="hero-submit-label">Know somewhere excellent?</div>
-      <p class="hero-submit-text">Don't gatekeep. Tell us where to eat.</p>
-      <a href="/submit.html" class="btn-ghost-sm">Submit a Restaurant</a>
+    <h2 class="hero-tagline">The Pirelli Guide is the real list of the <em>best tasting food</em> in the world.</h2>
+    <a href="#access" class="hero-access-btn">Get First Access</a>
+    <div class="spots-row">
+      <div class="pulse-dot"></div>
+      <div class="spots-text"><strong>24 of 45 spots</strong> claimed</div>
+    </div>
+    <div class="hero-social-row">
+      <span class="hero-social-label">See the restaurants live</span>
+      <a href="https://www.instagram.com/officialpirelliguide/" target="_blank" class="hero-social-icon" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@the.pirelli.guide" target="_blank" class="hero-social-icon" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </a>
     </div>
   </div>
-
 </section>
 
 <!-- PIRELLI BAR -->
 <div class="pirelli-bar">
   <div class="pirelli-bar-check"></div>
   <div class="pirelli-bar-inner">
-    <div class="pirelli-bar-left">
+    <div>
       <div class="pirelli-bar-headline">Pirelli. Sponsor Us.</div>
-      <div class="pirelli-bar-sub">Italian Engineering Since 1872 · We Will Take F1 Tickets As Payment</div>
+      <div class="pirelli-bar-sub">Italian Engineering Since 1872 · We Accept F1 Tickets As Payment</div>
     </div>
     <div class="pirelli-bar-ticker-wrap">
       <div class="pirelli-bar-ticker">
         <span class="hi">🏎 PLEASE PIRELLI</span><span>·</span>
         <span>WE CAN DO BIG THINGS TOGETHER</span><span>·</span>
-        <span class="hi">WE HAVE AN OFFER YOU CANNOT REFUSE</span><span>·</span>
+        <span class="hi">AN OFFER YOU CANNOT REFUSE</span><span>·</span>
         <span>POLE POSITION IN FLAVOR</span><span>·</span>
         <span class="hi">PIRELLI — CALL US</span><span>·</span>
         <span>SOFT COMPOUND · MAXIMUM FLAVOR</span><span>·</span>
-        <span class="hi">WE WILL TAKE F1 PADDOCK PASSES AS PAYMENT</span><span>·</span>
+        <span class="hi">F1 PADDOCK PASSES ACCEPTED</span><span>·</span>
         <span>ITALIAN ENGINEERING · UNCOMPROMISING QUALITY</span><span>·</span>
         <span class="hi">🏁 OFFICIALLY UNOFFICIAL</span><span>·</span>
-        <span>🏎 PLEASE PIRELLI</span><span>·</span>
+        <span class="hi">🏎 PLEASE PIRELLI</span><span>·</span>
         <span>WE CAN DO BIG THINGS TOGETHER</span><span>·</span>
-        <span class="hi">WE HAVE AN OFFER YOU CANNOT REFUSE</span><span>·</span>
+        <span class="hi">AN OFFER YOU CANNOT REFUSE</span><span>·</span>
         <span>POLE POSITION IN FLAVOR</span><span>·</span>
         <span class="hi">PIRELLI — CALL US</span><span>·</span>
         <span>SOFT COMPOUND · MAXIMUM FLAVOR</span><span>·</span>
-        <span class="hi">WE WILL TAKE F1 PADDOCK PASSES AS PAYMENT</span><span>·</span>
+        <span class="hi">F1 PADDOCK PASSES ACCEPTED</span><span>·</span>
         <span>ITALIAN ENGINEERING · UNCOMPROMISING QUALITY</span><span>·</span>
         <span class="hi">🏁 OFFICIALLY UNOFFICIAL</span><span>·</span>
       </div>
@@ -273,25 +288,26 @@ footer { background: var(--black); border-top: 1px solid #1a1a1a; padding: 32px 
 </div>
 
 <!-- MANIFESTO -->
-<div style="background:var(--black); padding: 110px 60px;">
-  <div style="max-width:820px; margin: 0 auto; text-align:center;">
-    <div class="manifesto-label" style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--yellow);margin-bottom:40px;display:flex;align-items:center;justify-content:center;gap:14px;">
-      <span style="display:block;width:30px;height:1px;background:var(--yellow);"></span>
-      Why We Exist
-      <span style="display:block;width:30px;height:1px;background:var(--yellow);"></span>
+<div class="manifesto">
+  <div class="manifesto-inner">
+    <div class="manifesto-eyebrow">
+      <span></span>Why We Exist<span></span>
     </div>
-    <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.5vw,30px);font-weight:300;line-height:1.65;color:#ccc;margin-bottom:24px;">The Michelin Guide rates the story of the food. The atmosphere. The technique. The chef's journey.</p>
-    <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.5vw,30px);font-weight:300;line-height:1.65;color:#ccc;margin-bottom:24px;">We rate one thing: <strong style="color:var(--white);font-weight:600;">how it tastes.</strong></p>
-    <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.5vw,30px);font-weight:300;line-height:1.65;color:var(--white);font-style:italic;">If it's on this list, it's really fucking good.</p>
+    <p class="manifesto-p">The Michelin Guide rates the story of the food. The atmosphere. The technique. The chef's journey.</p>
+    <p class="manifesto-p">We rate one thing: <strong>how it tastes.</strong></p>
+    <p class="manifesto-p final">If it's on this list, it's really fucking good.</p>
   </div>
 </div>
 
 <!-- GUIDE PREVIEW -->
 <section class="guide-preview">
   <div class="section-header">
-    <div>
-      <div class="section-label">Verified. Visited. Vouched For.</div>
+    <div class="section-header-left">
+      <div class="s-label">Verified. Visited. Vouched For.</div>
       <h2 class="section-h">From the Guide</h2>
+      <div class="section-meta">
+        <span>4 Cities</span> &nbsp;·&nbsp; <span>12 Restaurants</span> &nbsp;·&nbsp; <span>0 Compromises</span>
+      </div>
     </div>
     <a href="/guide.html" class="section-link">See the full list</a>
   </div>
@@ -299,7 +315,8 @@ footer { background: var(--black); border-top: 1px solid #1a1a1a; padding: 32px 
   <div class="rest-grid">
 
     <div class="rest-card" onclick="window.open('https://www.richtablesf.com','_blank')">
-      <div class="rest-dot"></div><div class="rest-cuisine">New American</div>
+      <div class="rest-dot"></div>
+      <div class="rest-cuisine">New American</div>
       <div class="rest-name">Rich Table</div>
       <div class="rest-loc">San Francisco, CA</div>
       <div class="rest-desc">Inventive cooking that actually tastes as good as it looks. One of the best restaurants in the city.</div>
@@ -310,10 +327,11 @@ footer { background: var(--black); border-top: 1px solid #1a1a1a; padding: 32px 
     </div>
 
     <div class="rest-card" onclick="window.open('https://www.liholicho.com','_blank')">
-      <div class="rest-dot"></div><div class="rest-cuisine">Hawaiian / New American</div>
+      <div class="rest-dot"></div>
+      <div class="rest-cuisine">Hawaiian / New American</div>
       <div class="rest-name">Liho Liho Yacht Club</div>
       <div class="rest-loc">San Francisco, CA</div>
-      <div class="rest-desc">Hawaiian-influenced cooking with bold flavors and serious technique. One of the most exciting restaurants in San Francisco.</div>
+      <div class="rest-desc">Hawaiian-influenced cooking with bold flavors and serious technique. One of the most exciting restaurants in SF.</div>
       <div class="rest-footer">
         <span class="rest-vibe nice">Nicer</span>
         <a href="https://www.liholicho.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
@@ -321,10 +339,11 @@ footer { background: var(--black); border-top: 1px solid #1a1a1a; padding: 32px 
     </div>
 
     <div class="rest-card" onclick="window.open('https://www.daeho-kalbijjim.com','_blank')">
-      <div class="rest-dot"></div><div class="rest-cuisine">Korean</div>
+      <div class="rest-dot"></div>
+      <div class="rest-cuisine">Korean</div>
       <div class="rest-name">Daeho</div>
       <div class="rest-loc">San Francisco, CA</div>
-      <div class="rest-desc">Specialists in kalbijjim — Korean braised short ribs. The kind of food you think about for days after eating it.</div>
+      <div class="rest-desc">Specialists in kalbijjim — Korean braised short ribs. The kind of food you think about for days after.</div>
       <div class="rest-footer">
         <span class="rest-vibe casual">Casual</span>
         <a href="https://www.daeho-kalbijjim.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
@@ -332,10 +351,11 @@ footer { background: var(--black); border-top: 1px solid #1a1a1a; padding: 32px 
     </div>
 
     <div class="rest-card" onclick="window.open('https://www.belottiristorante.com','_blank')">
-      <div class="rest-dot"></div><div class="rest-cuisine">Italian / Pasta</div>
+      <div class="rest-dot"></div>
+      <div class="rest-cuisine">Italian / Pasta</div>
       <div class="rest-name">Belotti</div>
       <div class="rest-loc">Oakland, CA</div>
-      <div class="rest-desc">Handmade pasta and traditional Italian cooking. The kind of restaurant that feels like it's been there forever.</div>
+      <div class="rest-desc">Handmade pasta and traditional Italian cooking. Feels like it's been there forever and will be there forever.</div>
       <div class="rest-footer">
         <span class="rest-vibe nice">Nicer</span>
         <a href="https://www.belottiristorante.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
@@ -343,10 +363,11 @@ footer { background: var(--black); border-top: 1px solid #1a1a1a; padding: 32px 
     </div>
 
     <div class="rest-card" onclick="window.open('https://www.easystreetburgers.com','_blank')">
-      <div class="rest-dot"></div><div class="rest-cuisine">Smash Burgers</div>
+      <div class="rest-dot"></div>
+      <div class="rest-cuisine">Smash Burgers</div>
       <div class="rest-name">Easy Street Burgers</div>
       <div class="rest-loc">Los Angeles, CA</div>
-      <div class="rest-desc">Consistently ranked among the best smash burgers in Los Angeles. Family-owned, still earning it every day.</div>
+      <div class="rest-desc">Among the best smash burgers in Los Angeles. Family-owned, started as a pop-up, still earning it every day.</div>
       <div class="rest-footer">
         <span class="rest-vibe casual">Casual</span>
         <a href="https://www.easystreetburgers.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
@@ -354,10 +375,11 @@ footer { background: var(--black); border-top: 1px solid #1a1a1a; padding: 32px 
     </div>
 
     <div class="rest-card" onclick="window.open('https://www.dudleymarketvenice.com','_blank')">
-      <div class="rest-dot"></div><div class="rest-cuisine">Seafood / Wine Bar</div>
+      <div class="rest-dot"></div>
+      <div class="rest-cuisine">Seafood / Wine Bar</div>
       <div class="rest-name">Dudley Market</div>
       <div class="rest-loc">Venice, CA</div>
-      <div class="rest-desc">Operates its own fishing boat. Raw bar, great natural wine, and one of the best burgers in LA on the side.</div>
+      <div class="rest-desc">Operates its own fishing boat. Raw bar, natural wine, and one of the best burgers in LA on the side.</div>
       <div class="rest-footer">
         <span class="rest-vibe nice">Nicer</span>
         <a href="https://www.dudleymarketvenice.com" target="_blank" class="rest-website" onclick="event.stopPropagation()">Website</a>
@@ -367,28 +389,34 @@ footer { background: var(--black); border-top: 1px solid #1a1a1a; padding: 32px 
   </div>
 
   <div class="guide-preview-cta">
-    <a href="/guide.html" class="btn-primary" style="display:inline-flex;max-width:280px;margin:0 auto;">See the Full Guide</a>
+    <a href="/guide.html" class="btn-primary" style="display:inline-flex;max-width:260px;margin:0 auto;">See the Full Guide</a>
   </div>
 </section>
 
-<!-- INSIDER SIGNUP -->
-<section class="insider" id="insider">
-  <div class="insider-inner">
-    <div class="insider-label">Pirelli Insider</div>
-    <h2 class="insider-h">Request <em>Access.</em></h2>
-    <p class="insider-sub">The greatest list of the best tasting food in the world.</p>
-    <div class="insider-note">Free. <span>Application only.</span></div>
-    <div class="insider-form">
-      <div class="insider-input-row">
-        <input type="email" id="email-input" placeholder="Email address (required)" />
+<!-- ACCESS -->
+<section class="access" id="access">
+  <div class="access-inner">
+    <div class="access-label">First Access</div>
+    <h2 class="access-h">Get on <em>the List.</em></h2>
+    <p class="access-sub">The greatest list of the best tasting food in the world.</p>
+    <p class="access-disclaimer">Don't be a prude. It's the only text you'll actually want to receive.</p>
+    <div class="access-form">
+      <div class="form-field-wrap">
+        <div class="form-field-label">Email Address *</div>
+        <div class="form-input-row">
+          <input type="email" id="email-input" placeholder="your@email.com" />
+        </div>
       </div>
-      <div class="insider-phone-row">
-        <input type="tel" id="phone-input" placeholder="Phone number (optional)" />
+      <div class="form-field-wrap">
+        <div class="form-field-label">Phone Number</div>
+        <div class="form-input-row">
+          <input type="tel" id="phone-input" placeholder="+1 (000) 000-0000" />
+        </div>
+        <div class="phone-note">Optional — we only text when a new restaurant earns a spot. You'll want to know.</div>
       </div>
-      <div class="insider-phone-note">We only text when a new restaurant earns a spot. You'll want to know.</div>
-      <button class="insider-btn" id="submit-btn" onclick="submitEmail()">Request Access</button>
-      <div id="insider-msg"></div>
-      <div class="insider-disclaimer">No spam. No selling your data. Ever.</div>
+      <button class="access-btn" id="submit-btn" onclick="submitEmail()">Request Access</button>
+      <div id="access-msg"></div>
+      <div class="access-fine">No spam. No selling your data. Ever.</div>
     </div>
   </div>
 </section>
@@ -398,22 +426,27 @@ footer { background: var(--black); border-top: 1px solid #1a1a1a; padding: 32px 
     <span class="footer-p">P</span>
     <span class="footer-name">irelli Guide</span>
   </div>
-  <div class="footer-mid">Not affiliated with Pirelli S.p.A. (yet)<br>pirelliguide.com</div>
-  <div class="footer-right">Built on the radical idea<br>that <span>food should taste good.</span></div>
+  <div class="footer-mid">Not affiliated with Pirelli S.p.A. (yet) &nbsp;·&nbsp; pirelliguide.com</div>
+  <div class="footer-right">
+    <a href="https://www.instagram.com/officialpirelliguide/" target="_blank" class="footer-social" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://www.tiktok.com/@the.pirelli.guide" target="_blank" class="footer-social" aria-label="TikTok">
+      <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+    </a>
+  </div>
 </footer>
 
 <script>
-// Nav scroll effect
 window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// Signup form
 async function submitEmail() {
   const email = document.getElementById('email-input').value.trim();
   const phone = document.getElementById('phone-input').value.trim();
   const btn = document.getElementById('submit-btn');
-  const msg = document.getElementById('insider-msg');
+  const msg = document.getElementById('access-msg');
   if (!email || !email.includes('@')) {
     msg.style.color = '#E8190A';
     msg.textContent = 'Enter a valid email address.';
