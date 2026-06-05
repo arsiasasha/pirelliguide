@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Submit a Restaurant — Pirelli Guide</title>
+<meta name="description" content="Think you know a Fuck Yes restaurant? Submit it to the Pirelli Guide.">
+<link rel="icon" type="image/png" href="/pirelli-guide-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --yellow: #FFCD00; --red: #E8190A; --black: #080808; --dark: #0f0f0f; --dim: #303030; --white: #F0EDE8; }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Barlow', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 18px 60px; background: rgba(8,8,8,.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,205,0,.1); }
+.nav-logo { display: flex; flex-direction: column; gap: 2px; text-decoration: none; }
+.nav-logo-row { display: flex; align-items: baseline; gap: 5px; }
+.nav-p { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 34px; line-height: .85; color: var(--yellow); display: inline-block; transform: scaleX(1.3); transform-origin: left; }
+.nav-brand { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: .35em; text-transform: uppercase; color: var(--white); }
+.nav-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #888; }
+.nav-right { display: flex; align-items: center; gap: 28px; }
+.nav-link { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #ccc; text-decoration: none; transition: color .2s; }
+.nav-link:hover { color: var(--yellow); }
+.nav-cta { background: var(--yellow); color: var(--black); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: .25em; text-transform: uppercase; padding: 10px 20px; text-decoration: none; }
+
+/* PAGE */
+.page-wrap { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 120px 20px 80px; }
+.page-inner { width: 100%; max-width: 560px; }
+.s-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--yellow); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.s-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--yellow); flex-shrink: 0; }
+h1 { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(38px, 5vw, 58px); line-height: .95; margin-bottom: 14px; }
+h1 em { color: var(--yellow); font-style: italic; }
+.sub { font-size: 15px; color: #ccc; font-weight: 300; line-height: 1.7; margin-bottom: 48px; }
+
+/* FORM */
+.form-group { margin-bottom: 20px; }
+.form-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: #aaa; margin-bottom: 8px; display: block; }
+.form-label span { color: var(--yellow); }
+.form-input { width: 100%; background: var(--dark); border: 1px solid var(--dim); color: var(--white); font-family: 'Barlow', sans-serif; font-size: 15px; font-weight: 300; padding: 14px 18px; outline: none; transition: border-color .2s; min-height: 48px; }
+.form-input:focus { border-color: var(--yellow); }
+.form-input::placeholder { color: #555; }
+textarea.form-input { min-height: 100px; resize: vertical; }
+.form-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: #666; margin-top: 6px; }
+.submit-btn { width: 100%; background: var(--yellow); color: var(--black); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .25em; text-transform: uppercase; padding: 18px; border: none; cursor: pointer; margin-top: 8px; min-height: 52px; transition: opacity .2s; }
+.submit-btn:hover { opacity: .9; }
+.submit-btn:disabled { opacity: .5; cursor: not-allowed; }
+#form-msg { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; min-height: 24px; margin-top: 14px; text-align: center; }
+.disclaimer { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: #555; margin-top: 16px; text-align: center; }
+
+/* FOOTER */
+footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-logo { display: flex; align-items: baseline; gap: 5px; }
+.footer-p { font-family: 'Cormorant Garamond',serif; font-weight: 700; font-size: 24px; color: var(--yellow); line-height: 1; transform: scaleX(1.3); display: inline-block; transform-origin: left; }
+.footer-name { font-family: 'Barlow Condensed',sans-serif; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; color: var(--white); }
+.footer-mid { font-family: 'Cormorant Garamond',serif; font-style: italic; font-size: 13px; color: #999; text-align: center; line-height: 1.6; }
+.footer-right { font-family: 'Barlow Condensed',sans-serif; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #999; text-align: right; }
+.footer-right span { color: var(--yellow); }
+
+@media (max-width: 768px) {
+  nav { padding: 14px 20px; }
+  .nav-right { display: none; }
+  footer { padding: 24px 20px; flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-row">
+      <span class="nav-p">P</span>
+      <span class="nav-brand">irelli Guide</span>
+    </div>
+    <div class="nav-sub">Unofficial Edition — Not affiliated with Pirelli S.p.A.</div>
+  </a>
+  <div class="nav-right">
+    <a href="/" class="nav-link">Home</a>
+    <a href="/guide.html" class="nav-link">The Guide</a>
+    <a href="/#sms" class="nav-cta">Get Updates</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-inner">
+    <div class="s-label">Know a good one?</div>
+    <h1>Submit a <em>Fuck Yes</em> Restaurant.</h1>
+    <p class="sub">Think somewhere deserves to be on the list? Tell us. We'll go. If it's really fucking good, it makes the guide — and you'll get credit for the tip.</p>
+
+    <div class="form-group">
+      <label class="form-label" for="restaurant">Restaurant Name <span>*</span></label>
+      <input class="form-input" type="text" id="restaurant" placeholder="e.g. Liho Liho Yacht Club" required />
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="city">City <span>*</span></label>
+      <input class="form-input" type="text" id="city" placeholder="e.g. San Francisco, CA" required />
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="whatToOrder">What to Order</label>
+      <textarea class="form-input" id="whatToOrder" placeholder="What's the move? What did you eat that made you think this place belongs on the list?"></textarea>
+      <div class="form-note">Optional — but this is how we know you actually know.</div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="email">Your Email</label>
+      <input class="form-input" type="email" id="email" placeholder="your@email.com" />
+      <div class="form-note">Optional — we'll let you know if it makes the guide.</div>
+    </div>
+
+    <button class="submit-btn" id="submit-btn" onclick="submitRestaurant()">Submit for Consideration</button>
+    <div id="form-msg"></div>
+    <div class="disclaimer">We review every submission. The bar is high and it stays high.</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">
+    <span class="footer-p">P</span>
+    <span class="footer-name">irelli Guide</span>
+  </div>
+  <div class="footer-mid">Not affiliated with Pirelli S.p.A. (yet)<br>pirelliguide.com</div>
+  <div class="footer-right">Built on the radical idea<br>that <span>food should taste good.</span></div>
+</footer>
+
+<script>
+async function submitRestaurant() {
+  const restaurant = document.getElementById('restaurant').value.trim();
+  const city = document.getElementById('city').value.trim();
+  const whatToOrder = document.getElementById('whatToOrder').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const btn = document.getElementById('submit-btn');
+  const msg = document.getElementById('form-msg');
+
+  if (!restaurant) {
+    msg.style.color = 'var(--red)';
+    msg.textContent = 'Restaurant name is required.';
+    return;
+  }
+  if (!city) {
+    msg.style.color = 'var(--red)';
+    msg.textContent = 'City is required.';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '...';
+  msg.textContent = '';
+
+  try {
+    const res = await fetch('/api/submit-restaurant', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ restaurant, city, whatToOrder, email })
+    });
+
+    if (res.ok) {
+      msg.style.color = 'var(--yellow)';
+      msg.textContent = "Got it. We'll check it out.";
+      document.getElementById('restaurant').value = '';
+      document.getElementById('city').value = '';
+      document.getElementById('whatToOrder').value = '';
+      document.getElementById('email').value = '';
+    } else {
+      throw new Error();
+    }
+  } catch {
+    msg.style.color = 'var(--red)';
+    msg.textContent = 'Something went wrong. Try again.';
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Submit for Consideration';
+}
+</script>
+</body>
+</html>
