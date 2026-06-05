@@ -10,24 +10,29 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Create or find contact first (required for opportunity)
-    let contactId = null;
-    if (email) {
-      const contactRes = await fetch('https://services.leadconnectorhq.com/contacts/', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.GHL_OPPORTUNITIES_API_KEY}`,
-          'Content-Type': 'application/json',
-          'Version': '2021-07-28'
-        },
-        body: JSON.stringify({
-          email,
-          locationId: process.env.GHL_LOCATION_ID,
-          tags: ['restaurant-submission']
-        })
-      });
-      const contactData = await contactRes.json();
-      contactId = contactData?.contact?.id || null;
+    // Always create a contact first — GHL requires contactId on every opportunity
+    const contactPayload = {
+      locationId: process.env.GHL_LOCATION_ID,
+      tags: ['restaurant-submission'],
+      name: `Submission: ${restaurant}`,
+    };
+    if (email) contactPayload.email = email;
+
+    const contactRes = await fetch('https://services.leadconnectorhq.com/contacts/', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.GHL_OPPORTUNITIES_API_KEY}`,
+        'Content-Type': 'application/json',
+        'Version': '2021-07-28'
+      },
+      body: JSON.stringify(contactPayload)
+    });
+    const contactData = await contactRes.json();
+    const contactId = contactData?.contact?.id;
+
+    if (!contactId) {
+      console.error('Failed to create contact:', contactData);
+      return res.status(500).json({ error: 'Failed to create contact' });
     }
 
     // Create opportunity in Pirelli Visits pipeline
@@ -37,10 +42,12 @@ export default async function handler(req, res) {
       pipelineStageId: '3cafb359-3f9a-4740-8e46-f13c558a0ee4',
       locationId: process.env.GHL_LOCATION_ID,
       status: 'open',
-      notes: whatToOrder ? `What to order: ${whatToOrder}` : '',
+      contactId,
+      notes: [
+        whatToOrder ? `What to order: ${whatToOrder}` : '',
+        email ? `Submitted by: ${email}` : 'No email provided',
+      ].filter(Boolean).join('\n'),
     };
-
-    if (contactId) oppBody.contactId = contactId;
 
     const oppRes = await fetch('https://services.leadconnectorhq.com/opportunities/', {
       method: 'POST',
