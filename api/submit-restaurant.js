@@ -29,7 +29,9 @@ export default async function handler(req, res) {
       body: JSON.stringify(contactPayload)
     });
     const contactData = await contactRes.json();
-    const contactId = contactData?.contact?.id;
+
+    // Use new contact ID, or existing ID if duplicate
+    const contactId = contactData?.contact?.id || contactData?.meta?.contactId;
 
     if (!contactId) {
       console.error('Failed to create contact:', contactData);
