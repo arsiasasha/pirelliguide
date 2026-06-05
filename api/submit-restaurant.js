@@ -46,10 +46,6 @@ export default async function handler(req, res) {
       locationId: process.env.GHL_LOCATION_ID,
       status: 'open',
       contactId,
-      notes: [
-        whatToOrder ? `What to order: ${whatToOrder}` : '',
-        email ? `Submitted by: ${email}` : 'No email provided',
-      ].filter(Boolean).join('\n'),
     };
 
     const oppRes = await fetch('https://services.leadconnectorhq.com/opportunities/', {
