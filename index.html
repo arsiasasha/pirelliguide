@@ -73,6 +73,7 @@ nav.scrolled { background: rgba(8,8,8,.97); backdrop-filter: blur(8px); border-b
   padding: 10px 10px 20px;
   box-shadow: 0 12px 48px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.2), inset 0 -2px 0 rgba(0,0,0,.3);
   position: relative;
+  max-width: 320px;
 }
 /* speaker dots top right */
 .hero-card::after {
@@ -94,13 +95,13 @@ nav.scrolled { background: rgba(8,8,8,.97); backdrop-filter: blur(8px); border-b
   margin-bottom: 8px;
 }
 .hero-card-screen {
-  background: #c8d4a0;
+  background: #dde8b0;
   border-radius: 8px;
-  border: 4px solid #2c2c2c;
+  border: 4px solid #1a1a1a;
   padding: 20px 22px;
   position: relative;
   overflow: hidden;
-  box-shadow: inset 0 2px 6px rgba(0,0,0,.3), 0 2px 0 rgba(255,255,255,.1);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,.25), 0 2px 0 rgba(255,255,255,.1);
 }
 /* scanlines */
 .hero-card-screen::before {
@@ -113,19 +114,20 @@ nav.scrolled { background: rgba(8,8,8,.97); backdrop-filter: blur(8px); border-b
 }
 .hero-card-screen-inner { position: relative; z-index: 2; }
 .hero-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
-.hero-card-badge { font-family: 'Barlow Condensed', sans-serif; font-size: 8px; letter-spacing: .3em; text-transform: uppercase; color: #4a5a20; background: rgba(0,0,0,.08); border: 1px solid rgba(0,0,0,.12); padding: 2px 7px; border-radius: 2px; }
-.hero-card-lives { font-size: 11px; letter-spacing: 2px; color: #4a5a20; }
-.hero-tagline { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(20px, 2.4vw, 32px); line-height: 1.15; color: #1a2a00; margin-bottom: 16px; }
-.hero-tagline em { color: #8B6914; font-style: italic; }
-.hero-card-stats { display: flex; gap: 0; margin-bottom: 16px; border: 1px solid rgba(0,0,0,.15); border-radius: 4px; overflow: hidden; }
-.hero-card-stat { display: flex; flex-direction: column; gap: 2px; flex: 1; padding: 8px 10px; background: rgba(0,0,0,.06); border-right: 1px solid rgba(0,0,0,.1); }
+.hero-card-badge { font-family: 'Barlow Condensed', sans-serif; font-size: 8px; letter-spacing: .3em; text-transform: uppercase; color: #2a3a08; background: rgba(0,0,0,.1); border: 1px solid rgba(0,0,0,.18); padding: 2px 7px; border-radius: 2px; }
+.hero-card-lives { font-size: 11px; letter-spacing: 2px; color: #2a3a08; }
+.hero-tagline { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(19px, 2.2vw, 28px); line-height: 1.2; color: #0d1a00; margin-bottom: 16px; }
+.hero-tagline em { color: #7a5800; font-style: italic; }
+.hero-card-stats { display: flex; gap: 0; margin-bottom: 16px; border: 1px solid rgba(0,0,0,.18); border-radius: 4px; overflow: hidden; }
+.hero-card-stat { display: flex; flex-direction: column; gap: 2px; flex: 1; padding: 8px 10px; background: rgba(0,0,0,.07); border-right: 1px solid rgba(0,0,0,.12); }
 .hero-card-stat:last-child { border-right: none; }
-.hero-card-stat-val { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 20px; color: #1a2a00; line-height: 1; }
-.hero-card-stat-label { font-family: 'Barlow Condensed', sans-serif; font-size: 8px; letter-spacing: .2em; text-transform: uppercase; color: #4a5a20; }
-.hero-card-divider { height: 1px; background: rgba(0,0,0,.12); margin-bottom: 14px; }
-.hero-access-btn { background: #1a2a00; border: none; color: #c8d4a0; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; padding: 13px 24px; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all .18s; min-height: 46px; border-radius: 4px; cursor: pointer; width: 100%; box-shadow: 0 3px 0 rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08); }
-.hero-access-btn::before { content: '▶'; font-size: 9px; color: var(--yellow); }
-.hero-access-btn:hover { transform: translateY(1px); box-shadow: 0 1px 0 rgba(0,0,0,.4); }
+.hero-card-stat-val { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 20px; color: #0d1a00; line-height: 1; }
+.hero-card-stat-label { font-family: 'Barlow Condensed', sans-serif; font-size: 8px; letter-spacing: .2em; text-transform: uppercase; color: #2a3a08; }
+.hero-card-divider { height: 1px; background: rgba(0,0,0,.15); margin-bottom: 14px; }
+.hero-access-btn { background: var(--red); border: none; color: #fff; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; padding: 13px 24px; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; border-radius: 4px; cursor: pointer; width: 100%; box-shadow: 0 3px 0 #6b0f0f; animation: btnflash 2.5s ease-in-out infinite; }
+.hero-access-btn::before { content: '▶'; font-size: 9px; }
+.hero-access-btn:hover { animation: none; background: #a01010; transform: translateY(1px); box-shadow: 0 1px 0 #6b0f0f; }
+@keyframes btnflash { 0%, 100% { box-shadow: 0 3px 0 #6b0f0f; } 50% { box-shadow: 0 3px 0 #6b0f0f, 0 0 18px rgba(232,25,10,.6); } }
 .hero-card-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
 .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: #c8d4a0; flex-shrink: 0; animation: pulse 1.8s ease-in-out infinite; }
 @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(200,212,160,.7); } 50% { box-shadow: 0 0 0 5px rgba(200,212,160,0); } }
