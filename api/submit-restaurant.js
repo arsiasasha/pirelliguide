@@ -14,14 +14,15 @@ export default async function handler(req, res) {
     const contactPayload = {
       locationId: process.env.GHL_LOCATION_ID,
       tags: ['restaurant-submission'],
-      name: `Submission: ${restaurant}`,
+      firstName: 'Submission',
+      lastName: restaurant,
     };
     if (email) contactPayload.email = email;
 
     const contactRes = await fetch('https://services.leadconnectorhq.com/contacts/', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${process.env.GHL_API_KEY}`,
+        'Authorization': `Bearer ${process.env.GHL_OPPORTUNITIES_API_KEY}`,
         'Content-Type': 'application/json',
         'Version': '2021-07-28'
       },
