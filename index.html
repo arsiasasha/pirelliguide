@@ -43,7 +43,7 @@ nav.scrolled { background: rgba(8,8,8,.97); backdrop-filter: blur(8px); border-b
 .nav-cta:hover { opacity: .85; }
 
 /* HERO */
-.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+.hero { min-height: 88vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
 
 /* hero background */
 .hero-bg { position: absolute; inset: 0; z-index: 0; }
@@ -52,21 +52,21 @@ nav.scrolled { background: rgba(8,8,8,.97); backdrop-filter: blur(8px); border-b
 .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(105deg, rgba(8,8,8,1) 0%, rgba(8,8,8,.92) 35%, rgba(8,8,8,.55) 65%, rgba(8,8,8,.7) 100%); }
 
 /* hero left */
-.hero-left { display: flex; flex-direction: column; justify-content: center; padding: 120px 56px 72px; position: relative; z-index: 2; }
-.hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: var(--yellow); margin-bottom: 22px; display: flex; align-items: center; gap: 12px; }
+.hero-left { display: flex; flex-direction: column; justify-content: center; padding: 100px 56px 60px; position: relative; z-index: 2; }
+.hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: .4em; text-transform: uppercase; color: var(--yellow); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
 .hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--yellow); flex-shrink: 0; }
-.hero-h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(38px, 4.8vw, 72px); line-height: .92; letter-spacing: .02em; text-transform: uppercase; color: var(--white); margin-bottom: 18px; }
+.hero-h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(52px, 6vw, 88px); line-height: .9; letter-spacing: .02em; text-transform: uppercase; color: var(--white); margin-bottom: 20px; }
 .hero-h1 .accent { color: var(--yellow); display: block; }
-.hero-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(17px, 1.8vw, 22px); color: #999; margin-bottom: 40px; line-height: 1.5; }
-.hero-buttons { display: flex; flex-direction: column; gap: 10px; max-width: 320px; }
-.btn-primary { background: var(--yellow); color: var(--black); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; padding: 16px 28px; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: opacity .2s; min-height: 50px; }
+.hero-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(20px, 2vw, 26px); color: #999; margin-bottom: 36px; line-height: 1.5; }
+.hero-buttons { display: flex; flex-direction: column; gap: 10px; max-width: 340px; }
+.btn-primary { background: var(--yellow); color: var(--black); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: .28em; text-transform: uppercase; padding: 17px 28px; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: opacity .2s; min-height: 52px; }
 .btn-primary:hover { opacity: .88; }
-.btn-outline { border: 1px solid rgba(255,205,0,.3); color: var(--yellow); font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; padding: 16px 28px; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: all .2s; min-height: 50px; }
+.btn-outline { border: 1px solid rgba(255,205,0,.3); color: var(--yellow); font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .28em; text-transform: uppercase; padding: 17px 28px; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: all .2s; min-height: 52px; }
 .btn-outline:hover { border-color: var(--yellow); background: rgba(255,205,0,.06); }
 
 /* hero right */
-.hero-right { display: flex; flex-direction: column; justify-content: center; padding: 120px 60px 72px 32px; position: relative; z-index: 2; }
-.hero-tagline { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(22px, 2.6vw, 38px); line-height: 1.1; color: var(--white); margin-bottom: 36px; }
+.hero-right { display: flex; flex-direction: column; justify-content: center; padding: 100px 60px 60px 32px; position: relative; z-index: 2; }
+.hero-tagline { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(26px, 3vw, 44px); line-height: 1.1; color: var(--white); margin-bottom: 32px; }
 .hero-tagline em { color: var(--yellow); font-style: italic; }
 .hero-access-btn { background: transparent; border: 1px solid rgba(255,255,255,.15); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; padding: 16px 28px; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: all .2s; min-height: 50px; margin-bottom: 14px; }
 .hero-access-btn:hover { border-color: var(--yellow); color: var(--yellow); }

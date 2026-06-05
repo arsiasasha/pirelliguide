@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>The Guide — Pirelli Guide</title>
+<title>Pirelli Guide Restaurants — The Best Tasting Restaurants in the World</title>
 <meta name="description" content="The full Pirelli Guide — a verified list of restaurants with Fuck Yes Food. No ratings. No bullshit.">
 <link rel="canonical" href="https://pirelliguide-beta.vercel.app/guide">
 <meta property="og:type" content="website">
@@ -49,11 +49,12 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 
 /* GUIDE */
 .guide { background: var(--black); padding: 60px 60px 90px; }
-.filter-bar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--dim); }
-.filter-btn { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; padding: 8px 15px; border: 1px solid var(--dim); background: transparent; color: #bbb; cursor: pointer; transition: all .18s; white-space: nowrap; min-height: 38px; }
-.filter-btn:hover { border-color: var(--yellow); color: var(--yellow); }
-.filter-btn.active { background: var(--yellow); color: var(--black); border-color: var(--yellow); font-weight: 700; }
-.filter-divider { width: 1px; height: 24px; background: var(--dim); align-self: center; margin: 0 2px; }
+.filter-bar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--dim); align-items: center; }
+.filter-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: #666; }
+.filter-select { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; background: var(--dark); border: 1px solid var(--dim); color: var(--white); padding: 10px 36px 10px 14px; cursor: pointer; outline: none; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23FFCD00'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; min-height: 42px; transition: border-color .2s; min-width: 180px; }
+.filter-select:focus { border-color: var(--yellow); }
+.filter-reset { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #555; background: none; border: none; cursor: pointer; padding: 10px 0; transition: color .2s; }
+.filter-reset:hover { color: var(--yellow); }
 .city-group { margin-bottom: 56px; }
 .city-header { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
 .city-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: #ccc; }
@@ -127,34 +128,48 @@ footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60p
 
 <div class="page-header">
   <div class="s-label">Verified. Visited. Vouched For.</div>
-  <h1>The Pirelli Guide</h1>
-  <p>If it's on this list, it's really fucking good. No ratings. No bullshit. Just places where you will not be disappointed.</p>
+  <h1>Pirelli Guide Restaurants</h1>
+  <p>The best tasting restaurants in the world. No ratings. No bullshit. If it's on this list, you will not be disappointed.</p>
 </div>
 
 <section class="guide">
   <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <div class="filter-divider"></div>
-    <button class="filter-btn" data-filter="vibe-casual">Casual</button>
-    <button class="filter-btn" data-filter="vibe-nice">Nicer</button>
-    <div class="filter-divider"></div>
-    <button class="filter-btn" data-filter="cuisine-burgers">Burgers</button>
-    <button class="filter-btn" data-filter="cuisine-pizza">Pizza</button>
-    <button class="filter-btn" data-filter="cuisine-italian">Italian</button>
-    <button class="filter-btn" data-filter="cuisine-korean">Korean</button>
-    <button class="filter-btn" data-filter="cuisine-dim-sum">Dim Sum</button>
-    <button class="filter-btn" data-filter="cuisine-middle-eastern">Middle Eastern</button>
-    <button class="filter-btn" data-filter="cuisine-seafood">Seafood</button>
-    <button class="filter-btn" data-filter="cuisine-bakery">Bakery</button>
-    <button class="filter-btn" data-filter="cuisine-sandwiches">Sandwiches</button>
-    <button class="filter-btn" data-filter="cuisine-new-american">New American</button>
-    <button class="filter-btn" data-filter="cuisine-burmese">Burmese</button>
-    <button class="filter-btn" data-filter="cuisine-hawaiian">Hawaiian</button>
+    <div>
+      <div class="filter-label" style="margin-bottom:4px;">City</div>
+      <select class="filter-select" id="city-filter" onchange="applyFilters()">
+        <option value="all">All Cities</option>
+        <option value="city-sf">San Francisco</option>
+        <option value="city-eastbay">East Bay</option>
+        <option value="city-peninsula">Peninsula</option>
+        <option value="city-la">Los Angeles</option>
+      </select>
+    </div>
+    <div>
+      <div class="filter-label" style="margin-bottom:4px;">Cuisine</div>
+      <select class="filter-select" id="cuisine-filter" onchange="applyFilters()">
+        <option value="all">All Cuisines</option>
+        <option value="vibe-casual">Casual</option>
+        <option value="vibe-nice">Nicer</option>
+        <option value="cuisine-burgers">Burgers</option>
+        <option value="cuisine-pizza">Pizza</option>
+        <option value="cuisine-italian">Italian</option>
+        <option value="cuisine-korean">Korean</option>
+        <option value="cuisine-dim-sum">Dim Sum</option>
+        <option value="cuisine-middle-eastern">Middle Eastern</option>
+        <option value="cuisine-seafood">Seafood</option>
+        <option value="cuisine-bakery">Bakery</option>
+        <option value="cuisine-sandwiches">Sandwiches</option>
+        <option value="cuisine-new-american">New American</option>
+        <option value="cuisine-burmese">Burmese</option>
+        <option value="cuisine-hawaiian">Hawaiian</option>
+      </select>
+    </div>
+    <button class="filter-reset" onclick="resetFilters()">↺ Reset</button>
   </div>
   <div id="no-results" class="no-results">Nothing matches that filter yet — the list is growing.</div>
 
   <!-- SAN FRANCISCO -->
-  <div class="city-group"><div class="city-header"><span class="city-label">San Francisco</span><div class="city-line"></div></div><div class="rest-grid">
+  <div class="city-group" data-city="city-sf"><div class="city-header"><span class="city-label">San Francisco</span><div class="city-line"></div></div><div class="rest-grid">
 
     <div class="rest-card" data-cuisine="new-american" data-vibe="nice">
       <div class="rest-dot"></div><div class="rest-cuisine">New American</div>
@@ -263,7 +278,7 @@ footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60p
   </div></div>
 
   <!-- EAST BAY -->
-  <div class="city-group"><div class="city-header"><span class="city-label">East Bay</span><div class="city-line"></div></div><div class="rest-grid">
+  <div class="city-group" data-city="city-eastbay"><div class="city-header"><span class="city-label">East Bay</span><div class="city-line"></div></div><div class="rest-grid">
 
     <div class="rest-card" data-cuisine="middle-eastern" data-vibe="casual">
       <div class="rest-dot"></div><div class="rest-cuisine">Middle Eastern</div>
@@ -301,7 +316,7 @@ footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60p
   </div></div>
 
   <!-- PENINSULA -->
-  <div class="city-group"><div class="city-header"><span class="city-label">Peninsula</span><div class="city-line"></div></div><div class="rest-grid">
+  <div class="city-group" data-city="city-peninsula"><div class="city-header"><span class="city-label">Peninsula</span><div class="city-line"></div></div><div class="rest-grid">
 
     <div class="rest-card" data-cuisine="middle-eastern" data-vibe="casual">
       <div class="rest-dot"></div><div class="rest-cuisine">Falafel / Mediterranean</div>
@@ -317,7 +332,7 @@ footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60p
   </div></div>
 
   <!-- LOS ANGELES -->
-  <div class="city-group"><div class="city-header"><span class="city-label">Los Angeles</span><div class="city-line"></div></div><div class="rest-grid">
+  <div class="city-group" data-city="city-la"><div class="city-header"><span class="city-label">Los Angeles</span><div class="city-line"></div></div><div class="rest-grid">
 
     <div class="rest-card" data-cuisine="burgers" data-vibe="casual">
       <div class="rest-dot"></div><div class="rest-cuisine">Smash Burgers</div>
@@ -363,29 +378,34 @@ document.querySelectorAll('.rest-card').forEach(card => {
   card.style.cursor = 'pointer';
 });
 
-const filterBtns = document.querySelectorAll('.filter-btn');
-let activeFilter = 'all';
+function applyFilters() {
+  const cityVal = document.getElementById('city-filter').value;
+  const cuisineVal = document.getElementById('cuisine-filter').value;
+  let count = 0;
 
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const f = btn.dataset.filter;
-    activeFilter = (f !== 'all' && f === activeFilter) ? 'all' : f;
-    filterBtns.forEach(b => b.classList.remove('active'));
-    document.querySelector(`[data-filter="${activeFilter}"]`).classList.add('active');
-    let count = 0;
-    document.querySelectorAll('.rest-card').forEach(card => {
-      const show = activeFilter === 'all'
-        || (activeFilter.startsWith('vibe-') && card.dataset.vibe === activeFilter.replace('vibe-',''))
-        || (activeFilter.startsWith('cuisine-') && card.dataset.cuisine === activeFilter.replace('cuisine-',''));
-      card.classList.toggle('hidden', !show);
-      if (show) count++;
+  document.querySelectorAll('.city-group').forEach(group => {
+    const cityMatch = cityVal === 'all' || group.dataset.city === cityVal;
+    if (!cityMatch) { group.style.display = 'none'; return; }
+
+    group.querySelectorAll('.rest-card').forEach(card => {
+      const cuisineMatch = cuisineVal === 'all'
+        || (cuisineVal.startsWith('vibe-') && card.dataset.vibe === cuisineVal.replace('vibe-',''))
+        || (cuisineVal.startsWith('cuisine-') && card.dataset.cuisine === cuisineVal.replace('cuisine-',''));
+      card.classList.toggle('hidden', !cuisineMatch);
+      if (cuisineMatch) count++;
     });
-    document.querySelectorAll('.city-group').forEach(g => {
-      g.style.display = g.querySelectorAll('.rest-card:not(.hidden)').length === 0 ? 'none' : '';
-    });
-    document.getElementById('no-results').classList.toggle('visible', count === 0);
+
+    group.style.display = group.querySelectorAll('.rest-card:not(.hidden)').length === 0 ? 'none' : '';
   });
-});
+
+  document.getElementById('no-results').classList.toggle('visible', count === 0);
+}
+
+function resetFilters() {
+  document.getElementById('city-filter').value = 'all';
+  document.getElementById('cuisine-filter').value = 'all';
+  applyFilters();
+}
 </script>
 </body>
 </html>
