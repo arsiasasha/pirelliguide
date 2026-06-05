@@ -58,9 +58,11 @@ export default async function handler(req, res) {
       body: JSON.stringify(oppBody)
     });
 
-    if (!oppRes.ok) {
-      const err = await oppRes.text();
-      console.error('GHL opportunity error:', err);
+    const oppData = await oppRes.json();
+
+    // Treat duplicate opportunity as success — it's already in the pipeline
+    if (!oppRes.ok && !oppData?.meta?.existingId) {
+      console.error('GHL opportunity error:', oppData);
       return res.status(500).json({ error: 'Failed to submit' });
     }
 
