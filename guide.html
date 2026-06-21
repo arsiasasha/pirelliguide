@@ -138,11 +138,16 @@ footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60p
       <div class="filter-label" style="margin-bottom:4px;">City</div>
       <select class="filter-select" id="city-filter" onchange="applyFilters()">
         <option value="all">All Cities</option>
-        <option value="city-sf">San Francisco</option>
-        <option value="city-eastbay">East Bay</option>
-        <option value="city-peninsula">Peninsula</option>
-        <option value="city-la">Los Angeles</option>
-        <option value="city-ny">New York</option>
+        <optgroup label="Bay Area">
+          <option value="bay-area">All Bay Area</option>
+          <option value="city-sf">San Francisco</option>
+          <option value="city-eastbay">East Bay</option>
+          <option value="city-peninsula">Peninsula</option>
+        </optgroup>
+        <optgroup label="US">
+          <option value="city-la">Los Angeles</option>
+          <option value="city-ny">New York</option>
+        </optgroup>
       </select>
     </div>
     <div>
@@ -178,7 +183,7 @@ footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60p
   <div id="no-results" class="no-results">Nothing matches that filter yet — the list is growing.</div>
 
   <!-- SAN FRANCISCO -->
-  <div class="city-group" data-city="city-sf"><div class="city-header"><span class="city-label">San Francisco</span><div class="city-line"></div></div><div class="rest-grid">
+  <div class="city-group" data-city="city-sf" data-region="bay-area"><div class="city-header"><span class="city-label">San Francisco</span><div class="city-line"></div></div><div class="rest-grid">
 
     <div class="rest-card" data-cuisine="new-american" data-vibe="nice">
       <div class="rest-dot"></div><div class="rest-cuisine">New American</div>
@@ -287,7 +292,7 @@ footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60p
   </div></div>
 
   <!-- EAST BAY -->
-  <div class="city-group" data-city="city-eastbay"><div class="city-header"><span class="city-label">East Bay</span><div class="city-line"></div></div><div class="rest-grid">
+  <div class="city-group" data-city="city-eastbay" data-region="bay-area"><div class="city-header"><span class="city-label">East Bay</span><div class="city-line"></div></div><div class="rest-grid">
 
     <div class="rest-card" data-cuisine="middle-eastern" data-vibe="casual">
       <div class="rest-dot"></div><div class="rest-cuisine">Middle Eastern</div>
@@ -322,11 +327,6 @@ footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60p
       </div>
     </div>
 
-  </div></div>
-
-  <!-- PENINSULA -->
-  <div class="city-group" data-city="city-peninsula"><div class="city-header"><span class="city-label">Peninsula</span><div class="city-line"></div></div><div class="rest-grid">
-
     <div class="rest-card" data-cuisine="middle-eastern" data-vibe="casual">
       <div class="rest-dot"></div><div class="rest-cuisine">Falafel / Mediterranean</div>
       <div class="rest-name">Falafelle</div>
@@ -341,7 +341,7 @@ footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60p
   </div></div>
 
   <!-- LOS ANGELES -->
-  <div class="city-group" data-city="city-la"><div class="city-header"><span class="city-label">Los Angeles</span><div class="city-line"></div></div><div class="rest-grid">
+  <div class="city-group" data-city="city-la" data-region="us"><div class="city-header"><span class="city-label">Los Angeles</span><div class="city-line"></div></div><div class="rest-grid">
 
     <div class="rest-card" data-cuisine="burgers" data-vibe="casual">
       <div class="rest-dot"></div><div class="rest-cuisine">Smash Burgers</div>
@@ -368,7 +368,7 @@ footer { background: var(--black); border-top: 1px solid #222; padding: 28px 60p
   </div></div>
 
   <!-- NEW YORK -->
-  <div class="city-group" data-city="city-ny"><div class="city-header"><span class="city-label">New York</span><div class="city-line"></div></div><div class="rest-grid">
+  <div class="city-group" data-city="city-ny" data-region="us"><div class="city-header"><span class="city-label">New York</span><div class="city-line"></div></div><div class="rest-grid">
 
     <div class="rest-card" data-cuisine="chinese" data-vibe="nice">
       <div class="rest-dot"></div><div class="rest-cuisine">Sichuanese</div>
@@ -421,7 +421,7 @@ function applyFilters() {
   let count = 0;
 
   document.querySelectorAll('.city-group').forEach(group => {
-    const cityMatch = cityVal === 'all' || group.dataset.city === cityVal;
+    const cityMatch = cityVal === 'all' || group.dataset.city === cityVal || (cityVal === 'bay-area' && group.dataset.region === 'bay-area');
     if (!cityMatch) { group.style.display = 'none'; return; }
 
     group.querySelectorAll('.rest-card').forEach(card => {
